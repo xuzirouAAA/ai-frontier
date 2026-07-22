@@ -1,6 +1,6 @@
 export const SITE_CONFIG = {
   name: 'AI 前沿资讯',
-  url: 'https://ai-frontier.vercel.app',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://ai-frontier-three.vercel.app',
   description: '专注AI与科技前沿的中文资讯站，为你精选最新AI工具、技术突破与行业动态',
   author: 'AI前沿团队',
   locale: 'zh-CN',
