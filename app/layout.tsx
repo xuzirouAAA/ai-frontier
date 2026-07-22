@@ -41,6 +41,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: renderJsonLd(orgSchema) }}
         />
 
+        {/* Google Search Console 验证 */}
+        <meta name="google-site-verification" content="googleb6fec2980f7af787" />
+
         {/* Google AdSense */}
         {adsenseId && (
           <script
