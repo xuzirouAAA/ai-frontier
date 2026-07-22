@@ -1,0 +1,26 @@
+{
+  "slug": "ai-video-generation-2025",
+  "title": "2025 AI 视频生成工具终极盘点：Sora、Runway、Pika 谁能称王？",
+  "description": "全面评测 Sora、Runway Gen-4、Pika 2.0 等 AI 视频生成工具，从画质、可控性、生成速度等维度横向对比。",
+  "coverImage": "/images/ai-model-comparison.svg",
+  "category": "tools",
+  "tags": ["AI视频", "Sora", "Runway", "Pika", "内容创作"],
+  "publishedAt": "2026-07-17T08:00:00.000Z",
+  "author": { "name": "AI前沿團隊" },
+  "featured": false,
+  "readingTime": 9,
+  "content": [
+    { "type": "paragraph", "text": "AI 视频生成在 2025 年迎来了爆发式增长。从 OpenAI 的 Sora 到 Runway Gen-4，再到 Pika 2.0，各款工具都在不断突破技術邊界。本文將為你全面盤點當前最主流的 AI 视频生成工具。" },
+    { "type": "heading", "level": 2, "text": "Sora：OpenAI 的视频生成革命" },
+    { "type": "paragraph", "text": "Sora 在 2025 年正式向公眾開放，引發了業界震動。其生成的視頻在畫質、一致性和時長方面都達到了前所未有的水平。Sora 能夠理解物體在三維空間中的運動規律，生成的視頻具有極強的物理真實感。" },
+    { "type": "paragraph", "text": "Sora 最大的突破在於其對「世界模型」的理解——它不僅僅是在生成像素，而是在理解場景的物理規律。這使得 Sora 生成的視頻在物體交互、光影變化等方面遠超其他工具。" },
+    { "type": "heading", "level": 2, "text": "Runway Gen-4：專業創作的首選" },
+    { "type": "paragraph", "text": "Runway Gen-4 延續了 Runway 在專業视频编辑领域的優勢。除了基础的文生视频功能，Gen-4 提供了强大的视频编辑能力，包括局部重绘、风格迁移、运动笔刷等專業級功能。" },
+    { "type": "paragraph", "text": "對於專業创作者來說，Runway 的工作流整合能力是其最大的優勢。它支持多轨道编辑、绿幕抠像、自动字幕等完整的后期制作流程，是一站式的 AI 视频创作平台。" },
+    { "type": "heading", "level": 2, "text": "Pika 2.0：创意表达的新标杆" },
+    { "type": "paragraph", "text": "Pika 2.0 在创意表达的靈活性方面表現突出。其「畫筆控制」功能允許用戶精確指定畫面中每個元素的運動軌跡，為創作者提供了前所未有的精細控制能力。Pika 在動畫風格生成方面也具有獨特優勢。" },
+    { "type": "heading", "level": 2, "text": "横向对比" },
+    { "type": "list", "items": ["Sora：畫質最優，物理真實感最強，適合高品質商業短片", "Runway Gen-4：專業功能最全，工作流整合最完善，適合專業視頻創作者", "Pika 2.0：創意控制最靈活，動畫風格獨特，適合藝術創作和社交媒體"] },
+    { "type": "paragraph", "text": "總體而言，這三款工具針對不同的用戶群體和使用場景各有優勢。Sora 在品質上領先，Runway 在專業性上取勝，Pika 則在創意靈活性方面獨樹一幟。建議根據具體需求選擇最適合的工具。" }
+  ]
+}

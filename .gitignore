@@ -32,6 +32,13 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# Claude config
+.claude/
+
+# AI writer debug files
+data/_debug_*
 
 # vercel
 .vercel

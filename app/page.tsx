@@ -1,65 +1,56 @@
-import Image from "next/image";
+import { getAllArticles, getFeaturedArticles } from '@/lib/articles';
+import Container from '@/components/ui/Container';
+import ArticleCard from '@/components/article/ArticleCard';
+import AdSlot from '@/components/ads/AdSlot';
 
-export default function Home() {
+export default function HomePage() {
+  const allArticles = getAllArticles();
+  const featured = getFeaturedArticles();
+  const latest = allArticles.filter((a) => !a.featured);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <Container className="py-8 sm:py-12">
+      {/* Featured Section */}
+      {featured.length > 0 && (
+        <section className="mb-12">
+          <h2 className="mb-6 text-sm font-semibold uppercase tracking-wider text-zinc-400">精选推荐</h2>
+          <div className="grid gap-6 lg:grid-cols-2">
+            {featured.slice(0, 2).map((article) => (
+              <ArticleCard key={article.slug} article={article} variant="hero" />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Latest Articles */}
+      <section>
+        <h2 className="mb-6 text-sm font-semibold uppercase tracking-wider text-zinc-400">最新文章</h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {latest.map((article, index) => (
+            <span key={article.slug}>
+              <ArticleCard article={article} />
+              {/* 每6篇文章插入一个广告 */}
+              {index > 0 && (index + 1) % 6 === 0 && (
+                <div className="col-span-full my-4">
+                  <AdSlot slot="home-feed" format="horizontal" />
+                </div>
+              )}
+            </span>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Site Description for SEO */}
+      <section className="mt-16 rounded-2xl bg-zinc-50 p-8 dark:bg-zinc-900">
+        <h2 className="mb-4 text-xl font-bold text-zinc-900 dark:text-white">关于 AI 前沿资讯</h2>
+        <p className="leading-relaxed text-zinc-600 dark:text-zinc-400">
+          AI 前沿资讯致力于为中文读者提供最新、最深入的 AI 和科技资讯。
+          我们追踪 X (Twitter) 平台上的热门 AI 话题，精选最有价值的內容，
+          以专业视角为您解读人工智能领域的最新突破、工具推荐和行业趋势。
+          无论你是 AI 从业者、科技爱好者还是数字化转型的决策者，
+          这里都有你需要的深度内容。
+        </p>
+      </section>
+    </Container>
   );
 }

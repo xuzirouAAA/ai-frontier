@@ -1,0 +1,24 @@
+{
+  "slug": "example-slug",
+  "title": "文章标题（60字以内，包含核心关键词）",
+  "description": "Meta 描述（160字以内，包含关键词，吸引点击）",
+  "coverImage": "/images/default-article.svg",
+  "category": "ai",
+  "tags": ["标签1", "标签2", "标签3", "标签4", "标签5"],
+  "publishedAt": "2026-07-21T08:00:00.000Z",
+  "author": { "name": "AI前沿团队" },
+  "featured": false,
+  "readingTime": 8,
+  "content": [
+    { "type": "paragraph", "text": "引言段落：点明主题，吸引读者，包含核心关键词。约100-150字。" },
+    { "type": "heading", "level": 2, "text": "小标题1：核心要点" },
+    { "type": "paragraph", "text": "正文段落：展开论述，每段约100-150字。包含相关的关键词和内链。" },
+    { "type": "heading", "level": 2, "text": "小标题2：深入分析" },
+    { "type": "paragraph", "text": "正文段落：提供深度分析和独特见解。" },
+    { "type": "quote", "text": "引用关键数据或专家观点，增加可信度。" },
+    { "type": "heading", "level": 2, "text": "关键要点总结" },
+    { "type": "list", "items": ["要点1", "要点2", "要点3", "要点4"] },
+    { "type": "paragraph", "text": "结尾段落：总结全文，引导读者互动或点击相关文章。" }
+  ],
+  "affiliateProducts": []
+}

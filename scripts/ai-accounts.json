@@ -1,0 +1,90 @@
+{
+  "description": "AI领域关键影响者追踪列表 - 用于内容发现和热点监控",
+  "accounts": [
+    {
+      "username": "AnthropicAI",
+      "name": "Anthropic",
+      "category": "ai",
+      "weight": 10,
+      "description": "Claude 模型官方账号"
+    },
+    {
+      "username": "OpenAI",
+      "name": "OpenAI",
+      "category": "ai",
+      "weight": 10,
+      "description": "GPT 系列模型官方账号"
+    },
+    {
+      "username": "ylecun",
+      "name": "Yann LeCun",
+      "category": "ai",
+      "weight": 8,
+      "description": "Meta AI 首席科学家"
+    },
+    {
+      "username": "AndrewYNg",
+      "name": "Andrew Ng",
+      "category": "ai",
+      "weight": 8,
+      "description": "AI 教育先驱，DeepLearning.AI 创始人"
+    },
+    {
+      "username": "kobinary",
+      "name": "ko binary",
+      "category": "ai",
+      "weight": 7,
+      "description": "AI 资讯博主"
+    },
+    {
+      "username": "alexalbert__",
+      "name": "Alex Albert",
+      "category": "ai",
+      "weight": 7,
+      "description": "Anthropic 布道师"
+    },
+    {
+      "username": "DrJimFan",
+      "name": "Jim Fan",
+      "category": "ai",
+      "weight": 8,
+      "description": "NVIDIA 高级科学家"
+    },
+    {
+      "username": "GoogleDeepMind",
+      "name": "Google DeepMind",
+      "category": "ai",
+      "weight": 9,
+      "description": "Google DeepMind 官方账号"
+    },
+    {
+      "username": "kashum",
+      "name": "Kashum",
+      "category": "startup",
+      "weight": 6,
+      "description": "AI 创投博主"
+    },
+    {
+      "username": "levelsio",
+      "name": "Pieter Levels",
+      "category": "startup",
+      "weight": 7,
+      "description": "独立开发者，AI 创业先锋"
+    }
+  ],
+  "searchKeywords": [
+    "AI breakthrough",
+    "new AI model",
+    "Claude 4",
+    "GPT-5",
+    "open source AI",
+    "AI coding",
+    "AI agent",
+    "LLM benchmark",
+    "AI startup funding",
+    "machine learning research",
+    "artificial intelligence news",
+    "大模型",
+    "AI 工具"
+  ]
+}

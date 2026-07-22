@@ -1,15 +1,26 @@
 {
-  "name": "ai-news-temp",
+  "name": "ai-news-site",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "article:new": "bash scripts/new-article.sh",
+    "article:list": "bash scripts/new-article.sh --list",
+    "pipeline": "bash scripts/pipeline.sh",
+    "pipeline:discover": "bash scripts/pipeline.sh discover",
+    "pipeline:status": "bash scripts/pipeline.sh status",
+    "ai:write": "npx tsx scripts/ai-writer.ts",
+    "ai:auto": "npx tsx scripts/ai-writer.ts --auto",
+    "ai:publish": "npx tsx scripts/ai-writer.ts --auto --publish"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.112.5",
+    "dotenv": "^17.4.2",
     "next": "16.2.10",
+    "openai": "^6.48.0",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },

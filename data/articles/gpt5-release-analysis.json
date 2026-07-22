@@ -1,0 +1,29 @@
+{
+  "slug": "gpt5-release-analysis",
+  "title": "GPT-5 正式發布：性能躍升與行業影響深度解析",
+  "description": "OpenAI GPT-5 正式面世，帶來推理能力、多模態、上下文窗口的全面升級。本文深入分析其技術突破和行業影響。",
+  "coverImage": "/images/ai-model-comparison.svg",
+  "category": "ai",
+  "tags": ["GPT-5", "OpenAI", "大語言模型", "AI突破"],
+  "publishedAt": "2026-07-21T06:00:00.000Z",
+  "updatedAt": "2026-07-21T12:00:00.000Z",
+  "author": { "name": "AI前沿團隊" },
+  "featured": true,
+  "readingTime": 11,
+  "content": [
+    { "type": "paragraph", "text": "OpenAI 於 2025 年 7 月正式發布了備受期待的 GPT-5 模型。這一代模型在推理能力、多模態理解和上下文處理等方面實現了顯著突破，被業界視為 AI 發展史上的又一個里程碑。" },
+    { "type": "heading", "level": 2, "text": "核心性能提升" },
+    { "type": "paragraph", "text": "GPT-5 在多项基准测试中取得了领先成绩。在 MMLU-Pro 上达到 92.3%，相比 GPT-4o 提升了 15%。在 MATH 基准测试中，GPT-5 的得分更是突破了 95%，显示出强大的数学推理能力。" },
+    { "type": "quote", "text": "GPT-5 的推理能力提升是質的飛躍，特別是在需要多步推理的複雜問題上，其表現已經接近人類專家水平。" },
+    { "type": "heading", "level": 2, "text": "多模態能力全面升級" },
+    { "type": "paragraph", "text": "GPT-5 在視覺理解方面實現了重大進步。它不僅能夠精確分析圖像和視頻內容，還能理解 3D 場景和複雜的圖表數據。這极大地拓展了其在醫療影像分析、工程設計等專業領域的應用潜力。" },
+    { "type": "paragraph", "text": "音頻處理方面，GPT-5 的原生語音理解能力使其在實時翻譯、語音助手等場景中的表現更加自然流暢。延遲大幅降低，語音交互的體驗已接近人類對話水平。" },
+    { "type": "heading", "level": 2, "text": "上下文窗口擴展" },
+    { "type": "paragraph", "text": "GPT-5 的上下文窗口扩展到了 1M token，这意味着它可以一次性处理整部《三体》三部曲体量的文本。对于需要分析大量文档的专业用户来说，這是一個巨大的生產力提升工具。" },
+    { "type": "heading", "level": 2, "text": "行業影響分析" },
+    { "type": "list", "items": ["程式設計：GPT-5 能自主完成複雜的跨文件重構和架構設計", "内容創作：長文本寫作和劇本創作達到專業水準", "科學研究：加速文獻綜述、實驗設計和數據分析", "教育領域：個性化教學能力大幅提升，可勝任 1對1 輔導"] },
+    { "type": "heading", "level": 2, "text": "定價與可用性" },
+    { "type": "paragraph", "text": "GPT-5 提供多個版本：GPT-5 標準版（付費訂閱）、GPT-5 Turbo（API，更高性能）和 GPT-5 Mini（輕量級，成本更低）。API 定價較 GPT-4o 有所上調，但性能提升幅度遠超價格漲幅。" }
+  ],
+  "affiliateProducts": ["chatgpt-plus"]
+}

@@ -1,0 +1,25 @@
+{
+  "slug": "ai-startup-funding-2025",
+  "title": "2025年Q2 AI創投報告：資金流向哪裡？哪些賽道最熱？",
+  "description": "解析2025年第二季度AI領域的投資趨勢，盤點最受資本青睞的細分賽道和代表性初創公司。",
+  "coverImage": "/images/ai-funding.svg",
+  "category": "startup",
+  "tags": ["創投", "AI創業", "投資趨勢", "融資"],
+  "publishedAt": "2026-07-15T06:00:00.000Z",
+  "author": { "name": "AI前沿團隊" },
+  "featured": false,
+  "readingTime": 8,
+  "content": [
+    { "type": "paragraph", "text": "2025年第二季度，全球AI領域的投資熱度持續升溫。根據最新數據，Q2全球AI初創公司融資總額達到385億美元，較去年同期增長42%。本文將深入分析資金流向和熱門賽道。" },
+    { "type": "heading", "level": 2, "text": "基礎模型：仍是吸金大戶" },
+    { "type": "paragraph", "text": "基礎模型賽道在 Q2 吸引了超過 150 億美元的投資，佔總額的近 40%。Anthropic、OpenAI 和 xAI 均在本季度完成了大額融資。值得注意的是，除了頭部玩家之外，一批專注於垂直領域的模型公司也獲得了可觀的投資。" },
+    { "type": "heading", "level": 2, "text": "AI 應用層：百花齊放" },
+    { "type": "paragraph", "text": "應用層投資在 Q2 表現活躍，涵蓋程式設計助手、醫療AI、法律科技、教育等多個領域。其中，AI 程式設計工具賽道最為火熱，Cursor、Windsurf 等公司在 Q2 相繼完成大額融資。" },
+    { "type": "heading", "level": 2, "text": "AI 基礎設施：暗流湧動" },
+    { "type": "paragraph", "text": "晶片和基礎設施賽道同樣吸引了大量資本。隨著 AI 推理需求爆發，以 Groq、Cerebras 為代表的推理晶片初創公司備受關注。此外，資料中心和能源基礎設施也成為新的投資熱點。" },
+    { "type": "heading", "level": 2, "text": "地區分佈" },
+    { "type": "paragraph", "text": "從地區來看，美國仍然主導 AI 投資，佔全球總額的 65%。中國位居第二，佔比 15%，主要受到國內大模型公司和應用層創業的推動。歐洲和中東也在快速增長。" },
+    { "type": "heading", "level": 2, "text": "投資建議" },
+    { "type": "list", "items": ["基礎模型領域已呈現頭部集中趨勢，新入場者需尋找垂直突破口", "應用層仍有大量機會，特別是結合具體行業場景的 AI 解決方案", "AI 基礎設施是確定性較高的長期賽道", "關注 AI 安全與治理領域，正在成為新的投資熱點"] }
+  ]
+}

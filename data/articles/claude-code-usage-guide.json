@@ -1,0 +1,29 @@
+{
+  "slug": "claude-code-usage-guide",
+  "title": "Claude Code 完全指南：从入门到精通的 AI 编程助手",
+  "description": "Claude Code 是 Anthropic 推出的命令行 AI 编程助手。本文详细介绍安装配置、核心功能和实战技巧，助你提升开发效率。",
+  "coverImage": "/images/ai-coding-tools.svg",
+  "category": "programming",
+  "tags": ["Claude Code", "AI编程", "开发工具", "命令行", "效率提升"],
+  "publishedAt": "2026-07-22T06:00:00.000Z",
+  "author": { "name": "AI前沿团队" },
+  "featured": false,
+  "readingTime": 10,
+  "content": [
+    { "type": "paragraph", "text": "Claude Code 是 Anthropic 推出的命令行 AI 编程助手，直接集成在终端中，让开发者无需离开命令行就能获得 AI 编程帮助。自发布以来，Claude Code 迅速成为开发者社区中最受欢迎的 AI 编程工具之一。" },
+    { "type": "heading", "level": 2, "text": "Claude Code 的核心特性" },
+    { "type": "paragraph", "text": "与传统的 AI 编程助手不同，Claude Code 深度集成在终端环境中。它能够理解整个代码仓库的结构，支持多文件编辑、Git 操作、代码审查等高级功能。开发者可以直接在终端中与 Claude 对话，完成从代码生成到部署的完整工作流。" },
+    { "type": "heading", "level": 2, "text": "安装与配置" },
+    { "type": "paragraph", "text": "安装 Claude Code 非常简单，只需通过 npm 全局安装即可：npm install -g @anthropic-ai/claude-code。安装完成后，在项目目录中运行 claude 命令即可启动交互式会话。Claude Code 会自动读取项目结构，无需额外配置。" },
+    { "type": "heading", "level": 2, "text": "核心功能详解" },
+    { "type": "paragraph", "text": "Claude Code 提供了丰富的核心功能。首先是代码生成与重构，开发者可以用自然语言描述需求，Claude 会直接生成或修改代码。其次是 Bug 修复，只需描述问题现象，Claude 会自动定位并修复。此外，Claude Code 还支持 Git 工作流集成，可以自动生成 commit message、创建 PR 等。" },
+    { "type": "quote", "text": "Claude Code 最大的优势在于其对整个代码仓库的全局理解能力。它能同时查看数百个文件，在重构和调试时提供远超传统工具的上下文感知能力。" },
+    { "type": "heading", "level": 2, "text": "实战技巧" },
+    { "type": "list", "items": ["善用 /help 命令查看所有可用功能，熟悉快捷键可大幅提升操作效率", "在项目根目录创建 CLAUDE.md 文件，写入项目规范和技术栈信息，Claude 会自动参考", "使用批量编辑功能处理跨文件的代码重构，比手动搜索替换更精准", "结合 Git 集成，让 Claude 自动生成规范的 commit message", "遇到复杂 Bug 时，让 Claude 先分析问题再修复，效果更好"] },
+    { "type": "heading", "level": 2, "text": "与其他工具的对比" },
+    { "type": "paragraph", "text": "与 Cursor 相比，Claude Code 的优势在于命令行原生集成和 Git 工作流的深度结合。Cursor 则提供了更友好的图形界面。与 GitHub Copilot 相比，Claude Code 的上下文理解更加全面，但 Copilot 的代码补全速度更快。选择哪款工具取决于个人偏好和工作流程。" },
+    { "type": "heading", "level": 2, "text": "总结" },
+    { "type": "paragraph", "text": "Claude Code 代表了 AI 编程助手的新方向——深度融入开发者已有的工作流程，而不是创建一个独立的环境。对于习惯使用命令行的开发者来说，Claude Code 是提升编程效率的强大工具。" }
+  ],
+  "affiliateProducts": ["cursor-pro"]
+}
