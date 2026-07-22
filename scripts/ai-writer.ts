@@ -242,7 +242,7 @@ async function callAnthropic(systemPrompt: string, userMessage: string): Promise
 
 // ─── 文章生成 ──────────────────────────────────────────────────
 
-async function generateArticle(topic: string, contextTweets: string[] = []): Promise<ArticleJSON> {
+export async function generateArticle(topic: string, contextTweets: string[] = []): Promise<ArticleJSON> {
   const systemPrompt = buildSystemPrompt();
   const existingSlugs = new Set(
     fs.existsSync(ARTICLES_DIR)
@@ -283,7 +283,7 @@ async function generateArticle(topic: string, contextTweets: string[] = []): Pro
 
 // ─── 保存文章 ──────────────────────────────────────────────────
 
-function saveArticle(article: ArticleJSON): string {
+export function saveArticle(article: ArticleJSON): string {
   if (!fs.existsSync(ARTICLES_DIR)) {
     fs.mkdirSync(ARTICLES_DIR, { recursive: true });
   }
