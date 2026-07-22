@@ -6,6 +6,9 @@ on:
     - cron: '0 1 * * *'
   workflow_dispatch:  # 支持手动触发
 
+permissions:
+  contents: write
+
 jobs:
   daily-publish:
     name: 生成并发布文章
@@ -14,8 +17,6 @@ jobs:
     steps:
       - name: 检出代码
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 设置 Node.js
         uses: actions/setup-node@v4
@@ -32,12 +33,16 @@ jobs:
           AI_PROVIDER: agnes
           MIN_ARTICLES: 1
           MAX_ARTICLES: 3
-        run: npx tsx scripts/daily-pipeline.ts
+        run: npx tsx scripts/daily-pipeline.ts 2>&1 | tail -20
 
-      - name: 推送新文章到仓库
+      - name: 提交并推送新文章
         run: |
           git config user.name "AI 前沿资讯 Bot"
           git config user.email "bot@ai-frontier.vercel.app"
           git add data/articles/
-          git diff --cached --quiet || git commit -m "🤖 AI 每日更新 $(date +'%Y-%m-%d')"
+          if git diff --cached --quiet; then
+            echo "没有新文章需要提交"
+            exit 0
+          fi
+          git commit -m "🤖 AI 每日更新 $(date +'%Y-%m-%d')"
           git push
