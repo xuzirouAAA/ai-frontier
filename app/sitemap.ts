@@ -18,6 +18,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.3,
     },
+    {
+      url: `${SITE_CONFIG.url}/privacy`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.3,
+    },
     ...CATEGORIES.map((cat) => ({
       url: `${SITE_CONFIG.url}/category/${cat.slug}`,
       lastModified: new Date(),

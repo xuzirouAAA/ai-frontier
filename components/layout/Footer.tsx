@@ -38,6 +38,14 @@ export default function Footer() {
                   关于我们
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/privacy"
+                  className="text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:hover:text-white"
+                >
+                  隐私政策
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
