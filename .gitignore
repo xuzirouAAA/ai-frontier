@@ -46,3 +46,5 @@ data/_debug_*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel

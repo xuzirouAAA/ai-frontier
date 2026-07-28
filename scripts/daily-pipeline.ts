@@ -27,7 +27,7 @@ const ARTICLES_DIR = path.join(__dirname, '..', 'data', 'articles');
 // ─── 话题池 ──────────────────────────────────────────────────
 
 const FALLBACK_TOPICS: string[] = [
-  '2025年最新AI突破性进展',
+  '2026年最新AI突破性进展',
   'AI编程工具重磅更新',
   'AI创业公司获得大额融资',
   '大语言模型性能对比最新结果',
