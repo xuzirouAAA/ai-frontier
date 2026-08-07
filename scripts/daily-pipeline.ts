@@ -16,117 +16,28 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import dotenv from 'dotenv';
+import { discoverFreshTopics } from './topic-discovery';
 
 const envPath = path.resolve(__dirname, '..', '.env.local');
 if (fs.existsSync(envPath)) {
   dotenv.config({ path: envPath });
 }
 
-const ARTICLES_DIR = path.join(__dirname, '..', 'data', 'articles');
-
-// ─── 话题池 ──────────────────────────────────────────────────
-
-const FALLBACK_TOPICS: string[] = [
-  '2026年最新AI突破性进展',
-  'AI编程工具重磅更新',
-  'AI创业公司获得大额融资',
-  '大语言模型性能对比最新结果',
-  'AI视频生成技术重大突破',
-  '开源AI模型最新动态',
-  'AI Agent自动化框架发展趋势',
-  'AI搜索引擎与传统搜索对比',
-  'AI辅助编程最佳实践',
-  'AI图像生成工具横向评测',
-  'AI音乐创作最新进展',
-  'AI在医疗领域的最新应用',
-  'AI编程助手对比评测',
-  '大模型API降价趋势分析',
-  'AI芯片竞争格局',
-  'AI安全与对齐研究进展',
-  '多模态AI模型能力评测',
-  'AI教育工具推荐',
-  'AI写作工具深度评测',
-  '自主AI Agent应用案例',
-];
-
 // ─── 工具函数 ──────────────────────────────────────────────────
-
-function getExistingSlugs(): Set<string> {
-  if (!fs.existsSync(ARTICLES_DIR)) return new Set();
-  return new Set(
-    fs.readdirSync(ARTICLES_DIR)
-      .filter(f => f.endsWith('.json'))
-      .map(f => f.replace('.json', ''))
-  );
-}
 
 function randomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function shuffleArray<T>(arr: T[]): T[] {
-  const copy = [...arr];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
-
-// ─── 发现热点（从 X 抓取 + 话题池混合） ────────────────────
+// ─── 发现热点（Hacker News → InfoQ → X → 话题池，多源去重） ────
 
 async function pickTopics(): Promise<string[]> {
   const min = parseInt(process.env.MIN_ARTICLES || '1', 10);
   const max = parseInt(process.env.MAX_ARTICLES || '3', 10);
   const count = randomInt(min, max);
 
-  const topics: string[] = [];
-
-  // 尝试从 X 发现热点
-  try {
-    const { execSync } = await import('child_process');
-    const accountsFile = path.join(__dirname, 'ai-accounts.json');
-    if (fs.existsSync(accountsFile)) {
-      const accounts = JSON.parse(fs.readFileSync(accountsFile, 'utf8'));
-      const keywords: string[] = accounts.searchKeywords || [];
-      for (const kw of keywords.slice(0, 3)) {
-        try {
-          const searchScript = path.join(
-            process.env.HOME || process.env.USERPROFILE || '~',
-            '.claude/skills/x-tweet-fetcher/scripts'
-          );
-          const cmd = `python3 "${path.join(searchScript, 'x_discover.py')}" --keywords "${kw}" --limit 2 --json 2>/dev/null`;
-          const output = execSync(cmd, { encoding: 'utf8', timeout: 10000 });
-          const results = JSON.parse(output);
-          if (Array.isArray(results)) {
-            results.forEach((r: { title?: string }) => {
-              if (r.title) topics.push(r.title);
-            });
-          }
-        } catch { /* 跳过 */ }
-      }
-    }
-  } catch { /* 无 X 抓取能力，使用话题池 */ }
-
-  // 如果热点不够，从话题池补充
-  if (topics.length < count) {
-    const existingSlugs = getExistingSlugs();
-    const shuffled = shuffleArray(FALLBACK_TOPICS);
-    for (const t of shuffled) {
-      if (topics.length >= count) break;
-      // 简单去重——避免生成非常相似的话题
-      const slug = t.replace(/[^a-z0-9]/gi, '-').toLowerCase().slice(0, 30);
-      if (!existingSlugs.has(slug)) {
-        topics.push(t);
-      }
-    }
-  }
-
-  // 如果话题池也用完了，允许重复（slug 会加时间戳）
-  while (topics.length < count) {
-    topics.push(FALLBACK_TOPICS[randomInt(0, FALLBACK_TOPICS.length - 1)]);
-  }
-
+  // discoverFreshTopics 内部已与已有文章标题双向去重，不足时返回能提供的条数（宁少勿重）
+  const topics = await discoverFreshTopics(count);
   return topics.slice(0, count);
 }
 

@@ -20,6 +20,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { discoverFreshTopics, getExistingTitles, isDuplicateTitle } from './topic-discovery';
 
 // 手动加载 .env.local（dotenv 默认只加载 .env）
 import dotenv from 'dotenv';
@@ -31,7 +32,6 @@ if (fs.existsSync(envPath)) {
 // ─── 配置 ───────────────────────────────────────────────────────
 
 const ARTICLES_DIR = path.join(__dirname, '..', 'data', 'articles');
-const ACCOUNTS_FILE = path.join(__dirname, 'ai-accounts.json');
 
 const AI_PROVIDER = (process.env.AI_PROVIDER || 'agnes').toLowerCase();
 const AGNES_API_KEY = process.env.AGNES_API_KEY || '';
@@ -71,27 +71,6 @@ function slugify(text: string): string {
       .slice(0, 80);
   }
   return `article-${Date.now().toString(36)}`;
-}
-
-function loadAccounts() {
-  try {
-    const raw = fs.readFileSync(ACCOUNTS_FILE, 'utf8');
-    return JSON.parse(raw);
-  } catch {
-    return { accounts: [], searchKeywords: [] };
-  }
-}
-
-function getExistingTitles(): string[] {
-  if (!fs.existsSync(ARTICLES_DIR)) return [];
-  return fs.readdirSync(ARTICLES_DIR)
-    .filter(f => f.endsWith('.json'))
-    .map(f => {
-      try {
-        return JSON.parse(fs.readFileSync(path.join(ARTICLES_DIR, f), 'utf8')).title;
-      } catch { return ''; }
-    })
-    .filter(Boolean);
 }
 
 function getCoverForCategory(category: string): string {
@@ -249,6 +228,7 @@ export async function generateArticle(topic: string, contextTweets: string[] = [
       ? fs.readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.json')).map(f => f.replace('.json', ''))
       : []
   );
+  const existingTitles = getExistingTitles();
 
   const tweetContext = contextTweets.length > 0
     ? `\n\n以下是 X 平台上关于此话题的相关讨论，请参考这些信息撰写文章：\n${contextTweets.join('\n---\n')}`
@@ -256,28 +236,45 @@ export async function generateArticle(topic: string, contextTweets: string[] = [
 
   const userMessage = `请根据以下话题撰写一篇 SEO 优化的中文文章：\n\n话题：${topic}\n${tweetContext}\n\n注意：\n1. 只输出 JSON，不要包含任何其他文字\n2. 标题控制在 50 字以内\n3. 描述（description）控制在 150 字以内\n4. 正文 1000-1500 字\n5. 分类要合理\n6. 如果话题和 AI/科技无关，请适当调整为 AI 科技视角`;
 
-  const text = await callAI(systemPrompt, userMessage);
   const debugTag = slugify(topic).slice(0, 30) || 'article';
-  const parsed = parseArticleJSON(text, debugTag);
 
-  let slug = slugify(parsed.title as string);
+  // 生成后标题级去重：与已有文章标题相似则重试（最多 3 次），仍重复则跳过不落盘
+  let parsed: Record<string, unknown> | null = null;
+  let title = '';
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const avoidNote = attempt > 0 && parsed
+      ? `\n\n⚠️ 上一版标题「${parsed.title}」与已有文章重复。请换一个完全不同的标题和切入角度，措辞不能与已有文章相似。`
+      : '';
+    const text = await callAI(systemPrompt, userMessage + avoidNote);
+    parsed = parseArticleJSON(text, debugTag);
+    title = (parsed.title as string) || '';
+    if (title && !isDuplicateTitle(title, existingTitles)) break;
+  }
+
+  if (!title || isDuplicateTitle(title, existingTitles)) {
+    throw new Error(`生成的文章标题与已有文章重复，已跳过：${title || '(空标题)'}`);
+  }
+
+  const p = parsed as Record<string, unknown>;
+
+  let slug = slugify(title);
   if (existingSlugs.has(slug)) {
     slug = `${slug}-${Date.now().toString(36)}`;
   }
 
   return {
     slug,
-    title: (parsed.title as string) || topic,
-    description: (parsed.description as string) || topic,
-    coverImage: getCoverForCategory(parsed.category as string),
-    category: (parsed.category as string) || 'ai',
-    tags: (parsed.tags as string[]) || ['AI'],
+    title,
+    description: (p.description as string) || topic,
+    coverImage: getCoverForCategory(p.category as string),
+    category: (p.category as string) || 'ai',
+    tags: (p.tags as string[]) || ['AI'],
     publishedAt: new Date().toISOString(),
     author: { name: 'AI前沿团队' },
-    featured: (parsed.featured as boolean) || false,
-    readingTime: (parsed.readingTime as number) || 8,
-    content: (parsed.content as ArticleJSON['content']) || [],
-    affiliateProducts: (parsed.affiliateProducts as string[]) || [],
+    featured: (p.featured as boolean) || false,
+    readingTime: (p.readingTime as number) || 8,
+    content: (p.content as ArticleJSON['content']) || [],
+    affiliateProducts: (p.affiliateProducts as string[]) || [],
   };
 }
 
@@ -294,46 +291,6 @@ export function saveArticle(article: ArticleJSON): string {
   const finalPath = path.join(ARTICLES_DIR, `${article.slug}.json`);
   fs.writeFileSync(finalPath, JSON.stringify(article, null, 2), 'utf8');
   return finalPath;
-}
-
-// ─── 热点发现 ──────────────────────────────────────────────────
-
-async function discoverTopics(): Promise<string[]> {
-  const accounts = loadAccounts();
-  const keywords: string[] = accounts.searchKeywords || [];
-  const topics: string[] = [];
-
-  for (const kw of keywords.slice(0, 5)) {
-    try {
-      const searchScript = path.join(
-        process.env.HOME || process.env.USERPROFILE || '~',
-        '.claude/skills/x-tweet-fetcher/scripts'
-      );
-      const cmd = `python3 "${path.join(searchScript, 'x_discover.py')}" --keywords "${kw}" --limit 3 --json 2>/dev/null`;
-      const { execSync } = await import('child_process');
-      const output = execSync(cmd, { encoding: 'utf8', timeout: 15000 });
-      const results = JSON.parse(output);
-      if (Array.isArray(results)) {
-        results.forEach((r: { title?: string }) => {
-          if (r.title) topics.push(r.title);
-        });
-      }
-    } catch { /* 跳过 */ }
-  }
-
-  if (topics.length === 0) {
-    topics.push(
-      '2026年最新AI突破性进展',
-      'AI编程工具重磅更新',
-      'AI创业公司获得大额融资',
-      '大语言模型性能对比最新结果',
-      'AI视频生成技术重大突破',
-      '开源AI模型最新动态',
-      'AI Agent自动化框架发展趋势',
-    );
-  }
-
-  return [...new Set(topics)].slice(0, 10);
 }
 
 // ─── Git 发布 ──────────────────────────────────────────────────
@@ -389,7 +346,7 @@ async function main() {
     topics = [directTopic];
   } else if (autoMode) {
     console.log('[discover] 🔍 正在发现 AI 热点话题...');
-    topics = await discoverTopics();
+    topics = await discoverFreshTopics(10);
     console.log(`[discover] 📋 发现 ${topics.length} 个话题`);
     topics.forEach((t, i) => console.log(`   ${i + 1}. ${t}`));
   } else {
