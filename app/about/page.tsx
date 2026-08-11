@@ -27,19 +27,17 @@ export default function AboutPage() {
 
           <h2 className="text-xl font-semibold text-zinc-900 dark:text-white">内容来源</h2>
           <p className="leading-relaxed">
-            我们追踪 X 平台上 AI 领域最具影响力的专家、研究机构和技术先驱，
-            实时捕获热门话题和突破性进展。每篇文章都经过人工审核和编辑，
-            确保信息的准确性和可读性。
+            我们追踪 X (Twitter)、Hacker News、InfoQ 等平台上 AI 领域最具影响力的专家、
+            研究机构和技术先驱，实时捕获热门话题和突破性进展。本站内容由 AI 辅助生成，
+            可能存在不准确或过时信息，请在参考时理性判断。
           </p>
 
           <h2 className="text-xl font-semibold text-zinc-900 dark:text-white">联系我们</h2>
           <p className="leading-relaxed">
-            如有任何建议或合作意向，欢迎通过以下方式与我们联系：
+            如有任何建议或合作意向，欢迎通过
+            <a href="/contact" className="text-blue-600 hover:underline dark:text-blue-400">联系我们</a>
+            页面与我们联系。
           </p>
-          <ul className="list-inside list-disc space-y-1">
-            <li>邮件：contact@ai-frontier.example.com</li>
-            <li>X (Twitter)：@ai_frontier</li>
-          </ul>
         </section>
       </article>
     </Container>

@@ -68,7 +68,7 @@ export default function PrivacyPage() {
         <h2>8. 联系我们</h2>
         <p>如果您对本隐私政策有任何疑问，请通过以下方式联系我们：</p>
         <p>
-          邮箱：privacy@ai-frontier.vercel.app
+          邮箱：xuzirou2@gmail.com
         </p>
 
         <h2>9. 政策更新</h2>

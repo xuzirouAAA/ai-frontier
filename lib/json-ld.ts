@@ -34,7 +34,7 @@ export function buildArticleSchema(article: Article) {
   const categoryName = getCategoryName(article.category);
   return {
     '@context': 'https://schema.org',
-    '@type': 'NewsArticle',
+    '@type': 'Article',
     headline: article.title,
     description: article.description,
     image: [`${SITE_CONFIG.url}${article.coverImage}`],

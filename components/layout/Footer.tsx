@@ -46,11 +46,28 @@ export default function Footer() {
                   隐私政策
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:hover:text-white"
+                >
+                  联系我们
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/terms"
+                  className="text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:hover:text-white"
+                >
+                  服务条款
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
         <div className="mt-8 border-t border-zinc-200 pt-6 text-center text-xs text-zinc-400 dark:border-zinc-800">
-          &copy; {new Date().getFullYear()} AI 前沿资讯. All rights reserved.
+          <p>本站内容由 AI 辅助生成，可能存在不准确或过时信息，请理性判断。</p>
+          <p className="mt-2">&copy; {new Date().getFullYear()} AI 前沿资讯. All rights reserved.</p>
         </div>
       </div>
     </footer>
