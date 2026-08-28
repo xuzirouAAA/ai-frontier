@@ -6,7 +6,7 @@ import { buildArticleSchema, buildBreadcrumbSchema, renderJsonLd } from '@/lib/j
 import Container from '@/components/ui/Container';
 import ArticleHeader from '@/components/article/ArticleHeader';
 import ArticleContent from '@/components/article/ArticleContent';
-import ArticleSidebar from '@/components/article/ArticleSidebar';
+import TableOfContents from '@/components/article/TableOfContents';
 import RelatedArticles from '@/components/article/RelatedArticles';
 import AdSlot from '@/components/ads/AdSlot';
 import AffiliateRecommendations from '@/components/affiliate/AffiliateRecommendations';
@@ -101,6 +101,8 @@ export default async function ArticlePage({ params }: Props) {
           </article>
 
           <aside className="hidden space-y-6 lg:block">
+            {/* 目录 */}
+            <TableOfContents content={article.content} />
             {/* 侧边栏联盟推荐 */}
             <AffiliateRecommendations category={article.category} />
             {/* 侧边栏广告 */}

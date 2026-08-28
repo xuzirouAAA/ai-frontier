@@ -83,6 +83,24 @@ function getCoverForCategory(category: string): string {
   return covers[category] || '/images/default-article.svg';
 }
 
+/** 统计正文纯文字字数（去空白，含列表项），用于字数校验与阅读时间计算 */
+function countContentChars(content: ArticleJSON['content'] | undefined): number {
+  if (!Array.isArray(content)) return 0;
+  return content.reduce((sum, b) => {
+    if (b.text) sum += b.text.replace(/\s/g, '').length;
+    if (Array.isArray(b.items)) b.items.forEach((i) => (sum += i.replace(/\s/g, '').length));
+    return sum;
+  }, 0);
+}
+
+/** 中文阅读速度约 300 字/分钟，按实际字数重算（不信任 LLM 猜测值） */
+function computeReadingTime(content: ArticleJSON['content'] | undefined): number {
+  return Math.max(1, Math.ceil(countContentChars(content) / 300));
+}
+
+/** 正文最少字数下限，避免生成「低价值内容」 */
+const MIN_CONTENT_CHARS = 800;
+
 function parseArticleJSON(text: string, debugTag: string): Record<string, unknown> {
   let jsonStr = text;
 
@@ -238,21 +256,42 @@ export async function generateArticle(topic: string, contextTweets: string[] = [
 
   const debugTag = slugify(topic).slice(0, 30) || 'article';
 
-  // 生成后标题级去重：与已有文章标题相似则重试（最多 3 次），仍重复则跳过不落盘
+  // 生成后校验：标题去重 + 字数下限，不通过则重试（最多 3 次），仍不合格则跳过不落盘
   let parsed: Record<string, unknown> | null = null;
   let title = '';
+  let content: ArticleJSON['content'] = [];
+
   for (let attempt = 0; attempt < 3; attempt++) {
-    const avoidNote = attempt > 0 && parsed
-      ? `\n\n⚠️ 上一版标题「${parsed.title}」与已有文章重复。请换一个完全不同的标题和切入角度，措辞不能与已有文章相似。`
+    const problems: string[] = [];
+    if (attempt > 0 && parsed) {
+      const prevTitle = (parsed.title as string) || '';
+      if (prevTitle && isDuplicateTitle(prevTitle, existingTitles)) {
+        problems.push(`标题「${prevTitle}」与已有文章重复，请换一个完全不同的标题和切入角度，措辞不能与已有文章相似`);
+      }
+      const prevChars = countContentChars(parsed.content as ArticleJSON['content']);
+      if (prevChars < MIN_CONTENT_CHARS) {
+        problems.push(`上一版正文仅约 ${prevChars} 字，未达到 ${MIN_CONTENT_CHARS} 字下限，请扩充内容、增加分析深度`);
+      }
+    }
+    const avoidNote = problems.length > 0
+      ? `\n\n⚠️ 上一版存在以下问题，请修正后重新输出完整 JSON：\n- ${problems.join('\n- ')}`
       : '';
     const text = await callAI(systemPrompt, userMessage + avoidNote);
     parsed = parseArticleJSON(text, debugTag);
     title = (parsed.title as string) || '';
-    if (title && !isDuplicateTitle(title, existingTitles)) break;
+    content = (parsed.content as ArticleJSON['content']) || [];
+    if (
+      title &&
+      !isDuplicateTitle(title, existingTitles) &&
+      countContentChars(content) >= MIN_CONTENT_CHARS
+    ) break;
   }
 
   if (!title || isDuplicateTitle(title, existingTitles)) {
     throw new Error(`生成的文章标题与已有文章重复，已跳过：${title || '(空标题)'}`);
+  }
+  if (countContentChars(content) < MIN_CONTENT_CHARS) {
+    throw new Error(`生成的文章正文过短（约 ${countContentChars(content)} 字，低于 ${MIN_CONTENT_CHARS} 字），已跳过：${title}`);
   }
 
   const p = parsed as Record<string, unknown>;
@@ -272,8 +311,8 @@ export async function generateArticle(topic: string, contextTweets: string[] = [
     publishedAt: new Date().toISOString(),
     author: { name: 'AI前沿团队' },
     featured: (p.featured as boolean) || false,
-    readingTime: (p.readingTime as number) || 8,
-    content: (p.content as ArticleJSON['content']) || [],
+    readingTime: computeReadingTime(content),
+    content,
     affiliateProducts: (p.affiliateProducts as string[]) || [],
   };
 }

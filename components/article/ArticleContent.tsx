@@ -1,6 +1,7 @@
 import type { ContentBlock } from '@/types/article';
 import type { Article } from '@/types/article';
 import AffiliateLink from '@/components/affiliate/AffiliateLink';
+import { headingId } from '@/lib/utils';
 
 interface ArticleContentProps {
   content: ContentBlock[];
@@ -15,7 +16,7 @@ function renderBlock(block: ContentBlock, index: number): React.ReactNode {
         ? 'mt-6 mb-3 text-xl font-semibold text-zinc-900 dark:text-white'
         : 'mt-8 mb-4 text-2xl font-bold text-zinc-900 dark:text-white';
       return (
-        <HeadingTag key={index} className={headingClass}>
+        <HeadingTag key={index} id={headingId(block.text || '')} className={headingClass}>
           {block.text}
         </HeadingTag>
       );

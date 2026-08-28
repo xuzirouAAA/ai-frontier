@@ -2,6 +2,7 @@
 
 import type { ContentBlock } from '@/types/article';
 import { useState, useEffect } from 'react';
+import { headingId } from '@/lib/utils';
 
 interface TableOfContentsProps {
   content: ContentBlock[];
@@ -24,8 +25,8 @@ export default function TableOfContents({ content }: TableOfContentsProps) {
     );
 
     headings.forEach((h) => {
-      const id = h.text?.toLowerCase().replace(/\s+/g, '-');
-      const el = document.getElementById(id || '');
+      const id = headingId(h.text || '');
+      const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
 
@@ -39,7 +40,7 @@ export default function TableOfContents({ content }: TableOfContentsProps) {
       <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-zinc-500">目录</h3>
       <ul className="space-y-1.5">
         {headings.map((h) => {
-          const id = h.text?.toLowerCase().replace(/\s+/g, '-');
+          const id = headingId(h.text || '');
           return (
             <li key={id}>
               <a

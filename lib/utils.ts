@@ -33,3 +33,8 @@ export function calculateReadingTime(contentLength: number): number {
   const minutes = Math.ceil(contentLength / wordsPerMinute);
   return Math.max(1, minutes);
 }
+
+/** 生成 heading 的锚点 id（供正文标题与目录 TOC 保持一致） */
+export function headingId(text: string): string {
+  return (text || '').toLowerCase().replace(/\s+/g, '-');
+}
