@@ -6,7 +6,10 @@
   "category": "ai",
   "tags": ["标签1", "标签2", "标签3", "标签4", "标签5"],
   "publishedAt": "2026-07-21T08:00:00.000Z",
-  "author": { "name": "AI前沿团队" },
+  "author": { "name": "徐梓柔" },
+  "editorStatus": "published",
+  "lastVerified": "2026-09-03",
+  "editorNote": "经人工编辑审核，核心事实已核实。部分早期产品信息可能需要更新。",
   "featured": false,
   "readingTime": 8,
   "content": [

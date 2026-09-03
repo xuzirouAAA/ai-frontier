@@ -29,7 +29,7 @@ export default function ArticleCard({ article, variant = 'default' }: ArticleCar
             </p>
           </div>
           <div className="mt-4 flex items-center gap-4 text-xs text-zinc-400">
-            <span>{article.author.name}</span>
+            <Link href="/author" className="hover:underline">{article.author.name}</Link>
             <span>{formatDate(article.publishedAt)}</span>
             <span>{article.readingTime} 分钟阅读</span>
           </div>

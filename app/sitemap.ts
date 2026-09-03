@@ -1,9 +1,9 @@
 import { MetadataRoute } from 'next';
-import { getAllArticles } from '@/lib/articles';
+import { getPublishedArticles } from '@/lib/articles';
 import { SITE_CONFIG, CATEGORIES } from '@/data/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const articles = getAllArticles();
+  const articles = getPublishedArticles();
 
   const staticPages = [
     {
@@ -19,7 +19,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
     {
+      url: `${SITE_CONFIG.url}/author`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.3,
+    },
+    {
+      url: `${SITE_CONFIG.url}/contact`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.3,
+    },
+    {
       url: `${SITE_CONFIG.url}/privacy`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.3,
+    },
+    {
+      url: `${SITE_CONFIG.url}/terms`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.3,

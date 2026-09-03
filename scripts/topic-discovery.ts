@@ -283,11 +283,27 @@ export async function discoverFreshTopics(count: number): Promise<string[]> {
 
 // ─── 独立运行入口（--test 时执行，被其他脚本 import 时不触发） ──
 
-if (process.argv.includes('--test')) {
+if (process.argv.includes('--test') || process.argv.includes('--save')) {
+  const saveMode = process.argv.includes('--save');
   (async () => {
-    const topics = await discoverFreshTopics(5);
+    const count = saveMode ? 15 : 5;
+    const topics = await discoverFreshTopics(count);
     console.log('发现 AI 热点话题:');
     topics.forEach((t, i) => console.log(`  ${i + 1}. ${t}`));
     console.log(`\n共 ${topics.length} 条`);
+
+    if (saveMode) {
+      const draftsDir = path.join(__dirname, '..', 'data', 'drafts');
+      if (!fs.existsSync(draftsDir)) fs.mkdirSync(draftsDir, { recursive: true });
+      const outPath = path.join(draftsDir, 'topics.json');
+      const payload = {
+        discoveredAt: new Date().toISOString(),
+        sources: ['hacker-news', 'infoq', 'fallback'],
+        count: topics.length,
+        topics,
+      };
+      fs.writeFileSync(outPath, JSON.stringify(payload, null, 2), 'utf8');
+      console.log(`\n[discover] 💾 已保存到 ${outPath}`);
+    }
   })().catch((e) => { console.error(e); process.exit(1); });
 }

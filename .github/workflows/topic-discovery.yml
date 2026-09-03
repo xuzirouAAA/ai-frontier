@@ -1,0 +1,38 @@
+name: Topic Discovery
+
+on:
+  schedule:
+    # 每天 UTC 06:00 (北京时间 14:00) 运行
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    # 允许手动触发
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Discover fresh topics
+        run: npx tsx scripts/topic-discovery.ts --save
+        env:
+          NODE_ENV: production
+
+      - name: Commit discovered topics
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/drafts/topics.json
+          # 仅当文件变更时提交
+          git diff --cached --quiet && echo "No changes to commit" || git commit -m "📋 话题发现 $(date +%Y-%m-%d)"
+          git push

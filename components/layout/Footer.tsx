@@ -40,6 +40,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/author"
+                  className="text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:hover:text-white"
+                >
+                  关于作者
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/privacy"
                   className="text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:hover:text-white"
                 >
@@ -66,7 +74,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t border-zinc-200 pt-6 text-center text-xs text-zinc-400 dark:border-zinc-800">
-          <p>本站内容由 AI 辅助生成，可能存在不准确或过时信息，请理性判断。</p>
+          <p>本站内容由 徐梓柔 编辑整理，力求准确及时，如有遗漏欢迎指正。</p>
           <p className="mt-2">&copy; {new Date().getFullYear()} AI 前沿资讯. All rights reserved.</p>
         </div>
       </div>

@@ -28,8 +28,9 @@ export default function AboutPage() {
           <h2 className="text-xl font-semibold text-zinc-900 dark:text-white">内容来源</h2>
           <p className="leading-relaxed">
             我们追踪 X (Twitter)、Hacker News、InfoQ 等平台上 AI 领域最具影响力的专家、
-            研究机构和技术先驱，实时捕获热门话题和突破性进展。本站内容由 AI 辅助生成，
-            可能存在不准确或过时信息，请在参考时理性判断。
+            研究机构和技术先驱，实时捕获热门话题和突破性进展。每篇文章均由编辑
+            <a href="/author" className="text-blue-600 hover:underline dark:text-blue-400">徐梓柔</a>
+            人工筛选、编辑和审核后发布，力求准确、简洁、有洞察力。
           </p>
 
           <h2 className="text-xl font-semibold text-zinc-900 dark:text-white">联系我们</h2>

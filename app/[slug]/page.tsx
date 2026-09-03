@@ -77,10 +77,12 @@ export default async function ArticlePage({ params }: Props) {
               <AdSlot slot="article-top" format="horizontal" />
             </div>
 
-            {/* AI 内容披露 */}
-            <div className="mb-6 rounded-lg bg-zinc-50 p-3 text-xs text-zinc-500 dark:bg-zinc-900">
-              本文由 AI 辅助生成，仅供参考，可能存在不准确或过时信息，请理性判断。
-            </div>
+            {article.lastVerified && (
+              <div className="mb-6 rounded-lg bg-zinc-50 p-3 text-xs text-zinc-500 dark:bg-zinc-900">
+                最后校验：{new Date(article.lastVerified).toLocaleDateString('zh-CN')}
+                {article.editorNote && <span className="ml-2">· {article.editorNote}</span>}
+              </div>
+            )}
 
             <ArticleContent
               content={article.content}

@@ -25,4 +25,8 @@ export interface Article {
   readingTime: number;
   content: ContentBlock[];
   affiliateProducts?: string[];
+  editorStatus?: 'draft' | 'review' | 'published';
+  lastVerified?: string;
+  editorNote?: string;
+  articleType?: 'standard' | 'deep-review' | 'hands-on-test' | 'news-roundup';
 }

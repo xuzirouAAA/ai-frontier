@@ -189,7 +189,7 @@ async function interactiveMode(): Promise<void> {
     category,
     tags: tags.length > 0 ? tags : [CATEGORY_NAMES[category]],
     publishedAt: new Date().toISOString(),
-    author: { name: 'AI前沿团队' },
+    author: { name: '徐梓柔' },
     featured,
     readingTime: 0,
     content,
@@ -212,7 +212,7 @@ async function fromTopicMode(topic: string): Promise<void> {
     category: 'ai',
     tags: [topic.split(' ')[0] || 'AI'],
     publishedAt: new Date().toISOString(),
-    author: { name: 'AI前沿团队' },
+    author: { name: '徐梓柔' },
     featured: false,
     readingTime: 5,
     content: [

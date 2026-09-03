@@ -40,6 +40,16 @@ export function getFeaturedArticles(): Article[] {
   return getAllArticles().filter((a) => a.featured);
 }
 
+export function getPublishedArticles(): Article[] {
+  return getAllArticles().filter(
+    (a) => a.editorStatus !== 'draft'
+  );
+}
+
+export function getDraftArticles(): Article[] {
+  return getAllArticles().filter((a) => a.editorStatus === 'draft');
+}
+
 export function getRelatedArticles(current: Article, limit = 3): Article[] {
   return getAllArticles()
     .filter((a) => a.slug !== current.slug && a.category === current.category)

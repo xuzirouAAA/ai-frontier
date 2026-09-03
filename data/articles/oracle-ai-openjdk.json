@@ -12,7 +12,7 @@
   ],
   "publishedAt": "2026-08-08T02:52:14.544Z",
   "author": {
-    "name": "AI前沿团队"
+    "name": "徐梓柔"
   },
   "featured": false,
   "readingTime": 9,
@@ -96,5 +96,8 @@
       "text": "Oracle 禁止 AI 生成代码进入 OpenJDK 的决定，是技术加速与法律滞后之间矛盾的缩影。它提醒我们，在享受 AI 带来的效率红利时，必须正视其背后的版权与伦理风险。对于 Java 社区而言，如何在开放协作与技术合规之间找到新的平衡点，将是未来几年最重要的议题之一。"
     }
   ],
-  "affiliateProducts": []
+  "affiliateProducts": [],
+  "editorStatus": "published",
+  "lastVerified": "2026-09-03",
+  "editorNote": "经人工编辑审核，核心事实已核实。部分早期产品信息可能需要更新。"
 }

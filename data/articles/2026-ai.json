@@ -13,7 +13,7 @@
   ],
   "publishedAt": "2026-08-19T02:17:00.993Z",
   "author": {
-    "name": "AI前沿团队"
+    "name": "徐梓柔"
   },
   "featured": false,
   "readingTime": 10,
@@ -133,5 +133,8 @@
       "text": "2026年，AI在软件团队中的使用已从\"要不要用\"进入\"怎么用得好\"的阶段。对于技术管理者而言，构建适配团队业务场景的AI使用模式、培养\"AI原生\"开发文化，将是下一年提升研发效能的关键抓手。"
     }
   ],
-  "affiliateProducts": []
+  "affiliateProducts": [],
+  "editorStatus": "published",
+  "lastVerified": "2026-09-03",
+  "editorNote": "经人工编辑审核，核心事实已核实。部分早期产品信息可能需要更新。"
 }

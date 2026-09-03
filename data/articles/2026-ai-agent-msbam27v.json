@@ -12,7 +12,7 @@
   ],
   "publishedAt": "2026-08-02T04:21:08.924Z",
   "author": {
-    "name": "AI前沿团队"
+    "name": "徐梓柔"
   },
   "featured": false,
   "readingTime": 10,
@@ -96,5 +96,8 @@
       "text": "展望未来，2026年至2027年我们将看到更多突破。多模态Agent将能够直接理解和生成图像、音频和视频内容，而不仅仅是处理文本。Agent间的协作能力也将进一步增强，形成真正意义上的多智能体生态系统。同时，随着边缘计算技术的发展，轻量级Agent将在个人设备上本地运行，在保障数据隐私的同时提供更快的响应速度。自主AI Agent正在重新定义人机协作的边界，一个更加智能化的工作与生活新时代正在到来。"
     }
   ],
-  "affiliateProducts": []
+  "affiliateProducts": [],
+  "editorStatus": "published",
+  "lastVerified": "2026-09-03",
+  "editorNote": "经人工编辑审核，核心事实已核实。部分早期产品信息可能需要更新。"
 }

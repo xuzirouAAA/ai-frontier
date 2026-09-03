@@ -14,8 +14,8 @@ export default function ContactPage() {
 
         <section className="space-y-4 text-zinc-600 dark:text-zinc-400">
           <p className="leading-relaxed">
-            感谢您访问 AI 前沿资讯。如果您对我们的内容有任何建议、发现错误，
-            或希望进行商务合作，欢迎通过邮件与我们联系。
+            您好，我是徐梓柔，AI 前沿资讯的编辑。如果您对我们的内容有任何建议、发现错误，
+            或希望进行商务合作，欢迎通过邮件与我联系。
           </p>
 
           <h2 className="text-xl font-semibold text-zinc-900 dark:text-white">联系方式</h2>

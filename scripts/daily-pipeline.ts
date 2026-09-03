@@ -1,16 +1,17 @@
 /**
- * 每日自动内容管线
+ * 每日内容管线
  *
- * 每天随机生成 1-3 篇文章并自动发布到 GitHub。
- * 专为 GitHub Actions 设计，也支持本地运行。
+ * 支持两种模式:
+ *   1. --discover-only  仅发现热点话题，保存到 data/drafts/topics.json，不生成文章
+ *   2. 默认模式（已禁用）生成文章并自动发布（需要 ENABLE_AUTO_PUBLISH=true）
  *
  * 用法:
- *   npx tsx scripts/daily-pipeline.ts
+ *   npx tsx scripts/daily-pipeline.ts --discover-only   # 仅话题发现
  *
  * 环境变量:
- *   AGNES_API_KEY  - Agnes AI API 密钥（必需）
- *   MIN_ARTICLES   - 最少文章数（默认 1）
- *   MAX_ARTICLES   - 最多文章数（默认 3）
+ *   ENABLE_AUTO_PUBLISH  - 启用自动文章生成+发布（默认禁用）
+ *   MIN_ARTICLES         - 最少文章数（默认 1）
+ *   MAX_ARTICLES         - 最多文章数（默认 3）
  */
 
 import * as fs from 'fs';
@@ -44,6 +45,50 @@ async function pickTopics(): Promise<string[]> {
 // ─── 主流程 ──────────────────────────────────────────────────
 
 async function main() {
+  const args = process.argv.slice(2);
+  const discoverOnly = args.includes('--discover-only');
+
+  // ─── 模式 1: 仅发现话题 ──────────────────────────────────────
+  if (discoverOnly) {
+    console.log('╔══════════════════════════════════════╗');
+    console.log('║   话题发现模式');
+    console.log('╚══════════════════════════════════════╝');
+    console.log('');
+
+    const min = parseInt(process.env.MIN_ARTICLES || '1', 10);
+    const max = parseInt(process.env.MAX_ARTICLES || '3', 10);
+    const count = randomInt(min, max);
+
+    console.log('[pipeline] 🔍 正在发现新鲜 AI 热点话题...');
+    const topics = await discoverFreshTopics(count);
+    console.log(`[pipeline] 📋 发现 ${topics.length} 个话题:`);
+    topics.forEach((t, i) => console.log(`   ${i + 1}. ${t}`));
+
+    // 保存到 data/drafts/topics.json
+    const draftsDir = path.join(__dirname, '..', 'data', 'drafts');
+    if (!fs.existsSync(draftsDir)) {
+      fs.mkdirSync(draftsDir, { recursive: true });
+    }
+    const outPath = path.join(draftsDir, 'topics.json');
+    const payload = {
+      discoveredAt: new Date().toISOString(),
+      mode: 'discover-only',
+      count: topics.length,
+      topics,
+    };
+    fs.writeFileSync(outPath, JSON.stringify(payload, null, 2), 'utf8');
+    console.log(`\n[pipeline] 💾 已保存到 ${outPath}`);
+    console.log('[pipeline] ✅ 话题发现完成。人工审核后可通过 publish-reviewed.ts 发布。');
+    return;
+  }
+
+  // ─── 模式 2: 自动文章生成（默认禁用） ──────────────────────────
+  if (process.env.ENABLE_AUTO_PUBLISH !== 'true') {
+    console.log('[pipeline] ⚠️ 自动文章生成已禁用。如需启用，设置环境变量 ENABLE_AUTO_PUBLISH=true');
+    console.log('[pipeline]    当前使用 --discover-only 模式发现话题，人工审核后通过 publish-reviewed.ts 发布。');
+    process.exit(0);
+  }
+
   console.log('╔══════════════════════════════════════╗');
   console.log('║   AI 每日内容管线启动');
   console.log('╚══════════════════════════════════════╝');

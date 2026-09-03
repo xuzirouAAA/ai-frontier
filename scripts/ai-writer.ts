@@ -130,19 +130,20 @@ function parseArticleJSON(text: string, debugTag: string): Record<string, unknow
 
 function buildSystemPrompt(): string {
   const existingTitles = getExistingTitles();
-  return `你是一位专业的中文 AI 科技编辑，擅长撰写 SEO 优化的中文技术文章。
+  return `你是一位专业的中文 AI 科技编辑 徐梓柔，擅长撰写有深度的 AI 科技分析文章。
 
 写作要求：
-1. 文章语言：简体中文，专业但不晦涩
+1. 文章语言：简体中文，专业但不晦涩，带有个人编辑视角
 2. 标题 ≤ 50 字，包含核心关键词。注意：当前是 2026 年，标题中的年份应使用 2026
-3. 描述 ≤ 150 字，吸引点击，包含关键词
-4. 正文 1000-1500 字，分 3-5 个小标题（h2/h3）
-5. 内容结构：引言 → 背景 → 核心分析 → 要点总结 → 展望
+3. 描述 ≤ 160 字，吸引点击，包含关键词
+4. 正文 1500-2500 字，分 4-6 个小标题（h2/h3），每段要有实质分析而非泛泛而谈
+5. 内容结构：引言 → 背景与现状 → 核心分析（含对比/数据） → 实操建议 → 要点总结 → 展望
 6. 每篇包含 1 个引用块（quote）和 1 个列表（list）
 7. 标签 3-5 个
-8. 确保事实准确，不编造数据
-9. 不要写和以下已有文章标题重复的内容：${existingTitles.join('、') || '（无）'}
-10. 分类可选：ai（AI人工智能）、tools（工具推荐）、programming（编程开发）、startup（创业科技）
+8. 确保事实准确，引用来源要注明；如不确定请标注 [待核实]
+9. 在需要补充实测数据、截图或第一手体验的地方标注 [待补充实测数据]
+10. 不要写和以下已有文章标题重复的内容：${existingTitles.join('、') || '（无）'}
+11. 分类可选：ai（AI人工智能）、tools（工具推荐）、programming（编程开发）、startup（创业科技）
 
 你必须输出严格的 JSON 格式，不要包含任何其他文字。
 
@@ -252,7 +253,20 @@ export async function generateArticle(topic: string, contextTweets: string[] = [
     ? `\n\n以下是 X 平台上关于此话题的相关讨论，请参考这些信息撰写文章：\n${contextTweets.join('\n---\n')}`
     : '';
 
-  const userMessage = `请根据以下话题撰写一篇 SEO 优化的中文文章：\n\n话题：${topic}\n${tweetContext}\n\n注意：\n1. 只输出 JSON，不要包含任何其他文字\n2. 标题控制在 50 字以内\n3. 描述（description）控制在 150 字以内\n4. 正文 1000-1500 字\n5. 分类要合理\n6. 如果话题和 AI/科技无关，请适当调整为 AI 科技视角`;
+  const userMessage = `请根据以下话题撰写一篇有深度的中文 AI 科技分析文章：
+
+话题：${topic}
+${tweetContext}
+
+注意：
+1. 只输出 JSON，不要包含任何其他文字
+2. 标题控制在 50 字以内，要有吸引力和辨识度
+3. 描述控制在 160 字以内
+4. 正文 1500-2500 字，要有实质分析和独特视角，不要泛泛而谈
+5. 分类要合理
+6. 如话题与 AI/科技无关，请从 AI 科技视角切入
+7. 在需要补充实测数据、截图或第一手体验的地方标注 [待补充实测数据]
+8. 在不确定的事实处标注 [待核实]`;
 
   const debugTag = slugify(topic).slice(0, 30) || 'article';
 
@@ -309,7 +323,7 @@ export async function generateArticle(topic: string, contextTweets: string[] = [
     category: (p.category as string) || 'ai',
     tags: (p.tags as string[]) || ['AI'],
     publishedAt: new Date().toISOString(),
-    author: { name: 'AI前沿团队' },
+    author: { name: '徐梓柔' },
     featured: (p.featured as boolean) || false,
     readingTime: computeReadingTime(content),
     content,
@@ -377,6 +391,12 @@ async function main() {
     console.error('   在 .env.local 中添加:');
     console.error('   ANTHROPIC_API_KEY=sk-ant-xxxxxxxxxxxx');
     process.exit(1);
+  }
+
+  if (process.env.ENABLE_AUTO_PUBLISH !== 'true') {
+    console.log('[ai-writer] ⚠️ 自动发布已禁用。如需启用，设置环境变量 ENABLE_AUTO_PUBLISH=true');
+    console.log('[ai-writer]   当前仅允许通过 publish-reviewed.ts 人工审核后发布。');
+    process.exit(0);
   }
 
   // 获取话题

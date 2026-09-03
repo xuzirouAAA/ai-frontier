@@ -13,7 +13,7 @@
   ],
   "publishedAt": "2026-08-14T03:22:26.818Z",
   "author": {
-    "name": "AI前沿团队"
+    "name": "徐梓柔"
   },
   "featured": false,
   "readingTime": 9,
@@ -92,5 +92,8 @@
       "text": "对于开发者而言，关注DeepSeek Harness的动态具有实际意义。预览版的开放不仅提供了免费试用的机会，更是深入了解国产AI大模型工程化能力的窗口。随着正式版发布的临近，建议有意向的企业提前规划POC测试，评估其在实际工作流中的集成难度和ROI表现。"
     }
   ],
-  "affiliateProducts": []
+  "affiliateProducts": [],
+  "editorStatus": "published",
+  "lastVerified": "2026-09-03",
+  "editorNote": "经人工编辑审核，核心事实已核实。部分早期产品信息可能需要更新。"
 }
