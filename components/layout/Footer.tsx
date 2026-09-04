@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { CATEGORIES } from '@/data/site';
 import { useI18n } from '@/components/i18n/LocaleProvider';
