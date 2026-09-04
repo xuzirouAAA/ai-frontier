@@ -1,0 +1,94 @@
+{
+  "common": {
+    "siteName": "AI 프론티어 계산기",
+    "home": "홈",
+    "tools": "계산 도구",
+    "viewAll": "모두 보기 →",
+    "backToHome": "홈으로 돌아가기",
+    "poweredBy": "AI 프론티어 계산기 제공"
+  },
+  "nav": {
+    "home": "홈",
+    "allTools": "계산기",
+    "categories": {
+      "calculator": "모든 도구",
+      "ai-cost": "AI 비용",
+      "programming": "프로그래밍",
+      "math": "수학 계산",
+      "finance": "금융/재무",
+      "health": "건강/생활",
+      "text": "텍스트 도구"
+    }
+  },
+  "home": {
+    "badge": "{{count}}개 무료 온라인 도구",
+    "title": "AI 프론티어 계산기",
+    "description": "AI 프론티어 계산기는 AI 비용 추정, 프로그래밍 유틸리티, 수학, 금융, 건강, 텍스트 도구 등 30개 이상의 무료 온라인 계산 도구를 제공합니다. 투명한 공식, 정확한 결과.",
+    "browseAll": "모든 도구 보기",
+    "browseByCategory": "카테고리로 찾기",
+    "categoryTitle": "카테고리",
+    "toolsCount": "{{count}}개 도구",
+    "featuredTitle": "인기 도구",
+    "whyTitle": "AI 프론티어 계산기를 선택하는 이유",
+    "whyItems": {
+      "transparent": {
+        "title": "투명한 공식",
+        "desc": "모든 도구가 계산 식을 표시하여 결과를 확인할 수 있습니다."
+      },
+      "noRegister": {
+        "title": "등록 불필요",
+        "desc": "모든 도구는 즉시 사용 가능합니다. 로그인이나 설치가 필요 없습니다."
+      },
+      "updated": {
+        "title": "항상 최신",
+        "desc": "AI 가격을 실시간으로 추적합니다. 비용 계산기는 최신 API 요금으로 정기적으로 업데이트됩니다."
+      }
+    },
+    "footerNote": "본 사이트는 공개된 공식을 기반으로 한 무료 계산 도구를 제공합니다. 전문적인 금융 또는 의료 조언이 필요할 경우 자격을 갖춘 전문가와 상담하십시오."
+  },
+  "toolsPage": {
+    "title": "계산 도구",
+    "subtitle": "AI 프론티어 계산기는 AI 비용, 프로그래밍, 수학, 금융, 건강 등 30개 이상의 실용적인 온라인 도구를 제공합니다.",
+    "categoryTitle": "카테고리로 찾기",
+    "featuredTitle": "추천 도구"
+  },
+  "calculator": {
+    "useTool": "계산기 사용",
+    "formula": "공식",
+    "examples": "예시",
+    "label": "레이블",
+    "result": "결과",
+    "calculating": "계산 중...",
+    "calculate": "계산",
+    "relatedTitle": "관련 계산기",
+    "disclaimer": "이 계산기는 공개된 공식을 기반으로 합니다. 실제 결과는 상황에 따라 다를 수 있습니다. 전문적인 필요가 있을 경우 자격을 갖춘 전문가와 상담하십시오.",
+    "inputs": {
+      "number": "값을 입력하세요",
+      "select": "선택하세요",
+      "toggleOn": "켜짐",
+      "toggleOff": "꺼짐"
+    }
+  },
+  "footer": {
+    "siteDesc": "AI 비용 추정, 프로그래밍, 수학, 금융, 건강을 포괄하는 30개 이상의 전문 계산 도구.",
+    "categoriesTitle": "카테고리",
+    "aboutTitle": "소개",
+    "disclaimer": "무료 온라인 계산 도구. 계산 결과는 참고용이며 전문적인 조언을 대체하지 않습니다.",
+    "copyright": "모든 권리 보유."
+  },
+  "pages": {
+    "about": "회사 소개",
+    "author": "저자 소개",
+    "contact": "연락처",
+    "privacy": "개인정보 처리방침",
+    "terms": "이용약관",
+    "back": "뒤로"
+  },
+  "langName": {
+    "zh": "简体中文",
+    "en": "English",
+    "ja": "日本語",
+    "ko": "한국어",
+    "zh-TW": "繁體中文"
+  }
+}

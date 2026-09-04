@@ -1,0 +1,94 @@
+{
+  "common": {
+    "siteName": "AI Frontier Calculators",
+    "home": "Home",
+    "tools": "Calculators",
+    "viewAll": "View All →",
+    "backToHome": "Back to Home",
+    "poweredBy": "Powered by AI Frontier Calculators"
+  },
+  "nav": {
+    "home": "Home",
+    "allTools": "Calculators",
+    "categories": {
+      "calculator": "All Tools",
+      "ai-cost": "AI Cost",
+      "programming": "Programming",
+      "math": "Math",
+      "finance": "Finance",
+      "health": "Health",
+      "text": "Text Tools"
+    }
+  },
+  "home": {
+    "badge": "{{count}} free online tools",
+    "title": "AI Frontier Calculators",
+    "description": "AI Frontier Calculators provides 30+ free online calculation tools covering AI cost estimation, programming utilities, math, finance, health, and text tools. Transparent formulas, accurate results.",
+    "browseAll": "Browse All Tools",
+    "browseByCategory": "Browse by Category",
+    "categoryTitle": "Categories",
+    "toolsCount": "{{count}} tools",
+    "featuredTitle": "Popular Tools",
+    "whyTitle": "Why Choose AI Frontier Calculators?",
+    "whyItems": {
+      "transparent": {
+        "title": "Transparent Formulas",
+        "desc": "Every tool shows its calculation formula so you can verify results."
+      },
+      "noRegister": {
+        "title": "No Registration",
+        "desc": "All tools work out of the box — no login or installation required."
+      },
+      "updated": {
+        "title": "Always Updated",
+        "desc": "AI pricing tracked in real-time; cost calculators stay current with latest API rates."
+      }
+    },
+    "footerNote": "This site provides free calculator tools based on publicly available formulas. For professional financial or medical advice, please consult a qualified expert."
+  },
+  "toolsPage": {
+    "title": "Calculator Tools",
+    "subtitle": "AI Frontier Calculators offers 30+ practical online tools covering AI cost, programming, math, finance, health and more.",
+    "categoryTitle": "Browse by Category",
+    "featuredTitle": "Featured Tools"
+  },
+  "calculator": {
+    "useTool": "Use Calculator",
+    "formula": "Formula",
+    "examples": "Examples",
+    "label": "Label",
+    "result": "Result",
+    "calculating": "Calculating...",
+    "calculate": "Calculate",
+    "relatedTitle": "Related Calculators",
+    "disclaimer": "Calculations are based on publicly available formulas. Actual results may vary. For professional needs, please consult a qualified expert.",
+    "inputs": {
+      "number": "Enter a value",
+      "select": "Select an option",
+      "toggleOn": "On",
+      "toggleOff": "Off"
+    }
+  },
+  "footer": {
+    "siteDesc": "30+ professional calculator tools covering AI cost estimation, programming, math, finance, and health.",
+    "categoriesTitle": "Categories",
+    "aboutTitle": "About",
+    "disclaimer": "Free online calculator tools. Results are for reference only and do not constitute professional advice.",
+    "copyright": "All rights reserved."
+  },
+  "pages": {
+    "about": "About Us",
+    "author": "About the Author",
+    "contact": "Contact Us",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "back": "Back"
+  },
+  "langName": {
+    "zh": "简体中文",
+    "en": "English",
+    "ja": "日本語",
+    "ko": "한국어",
+    "zh-TW": "繁體中文"
+  }
+}
