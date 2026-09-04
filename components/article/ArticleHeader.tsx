@@ -14,15 +14,15 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
 
   const breadcrumbs = [
     { name: '首页', url: SITE_CONFIG.url },
-    { name: category?.name || article.category, url: `${SITE_CONFIG.url}/category/${article.category}` },
-    { name: article.title, url: `${SITE_CONFIG.url}/${article.slug}` },
+    { name: category?.name || article.category, url: `${SITE_CONFIG.url}/tools/category/${article.category}` },
+    { name: article.title, url: `${SITE_CONFIG.url}/articles/${article.slug}` },
   ];
 
   return (
     <header className="mb-8">
       <Breadcrumbs items={breadcrumbs} />
       <div className="mb-4">
-        <Badge href={`/category/${article.category}`}>{category?.name || article.category}</Badge>
+        <Badge href={`/tools/category/${article.category}`}>{category?.name || article.category}</Badge>
       </div>
       <h1 className="text-3xl font-bold leading-tight tracking-tight text-zinc-900 sm:text-4xl dark:text-white">
         {article.title}
