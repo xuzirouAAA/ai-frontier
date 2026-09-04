@@ -1,0 +1,94 @@
+{
+  "common": {
+    "siteName": "AIフロンティア計算機",
+    "home": "ホーム",
+    "tools": "計算ツール",
+    "viewAll": "すべて見る →",
+    "backToHome": "ホームに戻る",
+    "poweredBy": "AIフロンティア計算機提供"
+  },
+  "nav": {
+    "home": "ホーム",
+    "allTools": "計算機",
+    "categories": {
+      "calculator": "すべてのツール",
+      "ai-cost": "AI コスト",
+      "programming": "プログラミング",
+      "math": "数学計算",
+      "finance": "金融・財務",
+      "health": "健康・生活",
+      "text": "テキストツール"
+    }
+  },
+  "home": {
+    "badge": "{{count}} 個の無料オンラインツール",
+    "title": "AIフロンティア計算機",
+    "description": "AIフロンティア計算機は、AIコスト推定、プログラミングユーティリティ、数学、金融、健康、テキストツールなど、30以上の無料オンライン計算ツールを提供します。公式が透明で、結果が正確。",
+    "browseAll": "すべてのツールを見る",
+    "browseByCategory": "カテゴリから探す",
+    "categoryTitle": "カテゴリ",
+    "toolsCount": "{{count}} 個のツール",
+    "featuredTitle": "人気ツール",
+    "whyTitle": "AIフロンティア計算機を選ぶ理由",
+    "whyItems": {
+      "transparent": {
+        "title": "透明な公式",
+        "desc": "すべてのツールが計算式を表示し、結果を検証できます。"
+      },
+      "noRegister": {
+        "title": "登録不要",
+        "desc": "すべてのツールはすぐに使える状態。ログインやインストールは不要。"
+      },
+      "updated": {
+        "title": "常に最新",
+        "desc": "AI価格をリアルタイムで追跡。費用計算機は最新のAPIレートで定期的に更新されます。"
+      }
+    },
+    "footerNote": "本サイトは公開されている公式に基づいた無料計算ツールを提供します。専門的な金融・医療アドバイスについては、資格のある専門家にご相談ください。"
+  },
+  "toolsPage": {
+    "title": "計算ツール",
+    "subtitle": "AIフロンティア計算機は、AIコスト、プログラミング、数学、金融、健康など、30以上の実用的なオンラインツールを提供します。",
+    "categoryTitle": "カテゴリから探す",
+    "featuredTitle": "注目ツール"
+  },
+  "calculator": {
+    "useTool": "計算機を使用",
+    "formula": "公式",
+    "examples": "例",
+    "label": "ラベル",
+    "result": "結果",
+    "calculating": "計算中...",
+    "calculate": "計算",
+    "relatedTitle": "関連する計算機",
+    "disclaimer": "この計算機は公開されている公式に基づいています。実際の結果は状況によって異なる場合があります。専門的なニーズがある場合は、資格のある専門家にご相談ください。",
+    "inputs": {
+      "number": "値を入力してください",
+      "select": "選択してください",
+      "toggleOn": "オン",
+      "toggleOff": "オフ"
+    }
+  },
+  "footer": {
+    "siteDesc": "AIコスト推定、プログラミング、数学、金融、健康などをカバーする30以上のプロフェッショナル計算ツール。",
+    "categoriesTitle": "カテゴリ",
+    "aboutTitle": "について",
+    "disclaimer": "無料のオンライン計算ツール。計算結果は参考用であり、専門的なアドバイスではありません。",
+    "copyright": "無断転載を禁じます。"
+  },
+  "pages": {
+    "about": "私たちについて",
+    "author": "著者について",
+    "contact": "お問い合わせ",
+    "privacy": "プライバシーポリシー",
+    "terms": "利用規約",
+    "back": "戻る"
+  },
+  "langName": {
+    "zh": "简体中文",
+    "en": "English",
+    "ja": "日本語",
+    "ko": "한국어",
+    "zh-TW": "繁體中文"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "common": {
+    "siteName": "AI 前沿計算器",
+    "home": "首頁",
+    "tools": "計算工具",
+    "viewAll": "查看全部 →",
+    "backToHome": "返回首頁",
+    "poweredBy": "由 AI 前沿計算器提供"
+  },
+  "nav": {
+    "home": "首頁",
+    "allTools": "計算機",
+    "categories": {
+      "calculator": "所有工具",
+      "ai-cost": "AI 成本",
+      "programming": "程式開發",
+      "math": "數學計算",
+      "finance": "金融財務",
+      "health": "健康生活",
+      "text": "文字工具"
+    }
+  },
+  "home": {
+    "badge": "{{count}} 個線上工具，全部免費使用",
+    "title": "AI 前沿計算器",
+    "description": "AI 前沿計算器提供 {{count}}+ 免費線上計算工具，涵蓋 AI 成本、程式開發、數學計算、金融財務、健康生活、文字工具等類別。公式透明，計算準確。",
+    "browseAll": "瀏覽所有工具",
+    "browseByCategory": "按分類尋找",
+    "categoryTitle": "工具分類",
+    "toolsCount": "{{count}} 個工具",
+    "featuredTitle": "熱門工具",
+    "whyTitle": "為什麼選擇 AI 前沿計算器？",
+    "whyItems": {
+      "transparent": {
+        "title": "公式透明",
+        "desc": "每個工具都顯示計算公式，結果可驗證，不隱藏邏輯。"
+      },
+      "noRegister": {
+        "title": "無需註冊",
+        "desc": "所有工具開箱即用，無需登入、無需安裝，瀏覽器直接開啟。"
+      },
+      "updated": {
+        "title": "持續更新",
+        "desc": "AI 工具價格即時追蹤，費用計算器定期校準最新 API 報價。"
+      }
+    },
+    "footerNote": "本站提供免費計算工具，所有計算基於公開公式。如需專業財務或醫療建議，請諮詢專業人士。"
+  },
+  "toolsPage": {
+    "title": "計算工具",
+    "subtitle": "AI 前沿計算器提供 30+ 實用線上工具，涵蓋 AI 成本、程式開發、數學、金融、健康等領域。",
+    "categoryTitle": "按分類瀏覽",
+    "featuredTitle": "熱門推薦"
+  },
+  "calculator": {
+    "useTool": "使用計算器",
+    "formula": "公式",
+    "examples": "範例",
+    "label": "標籤",
+    "result": "結果",
+    "calculating": "計算中...",
+    "calculate": "計算",
+    "relatedTitle": "相關計算器",
+    "disclaimer": "本計算器基於公開公式計算，實際結果可能因具體情況而有所不同。如有專業需求，請諮詢專業人士。",
+    "inputs": {
+      "number": "請輸入數值",
+      "select": "請選擇",
+      "toggleOn": "已開啟",
+      "toggleOff": "已關閉"
+    }
+  },
+  "footer": {
+    "siteDesc": "提供 30+ 專業計算工具，涵蓋 AI 成本、程式開發、數學計算、金融財務、健康生活等領域。",
+    "categoriesTitle": "工具分類",
+    "aboutTitle": "關於",
+    "disclaimer": "本站提供免費線上計算工具，計算結果僅供參考，不構成專業建議。",
+    "copyright": "版權所有"
+  },
+  "pages": {
+    "about": "關於我們",
+    "author": "關於作者",
+    "contact": "聯絡我們",
+    "privacy": "隱私權政策",
+    "terms": "服務條款",
+    "back": "返回"
+  },
+  "langName": {
+    "zh": "简体中文",
+    "en": "English",
+    "ja": "日本語",
+    "ko": "한국어",
+    "zh-TW": "繁體中文"
+  }
+}

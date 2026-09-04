@@ -1,0 +1,94 @@
+{
+  "common": {
+    "siteName": "AI 前沿计算器",
+    "home": "首页",
+    "tools": "计算器工具",
+    "viewAll": "查看全部 →",
+    "backToHome": "返回首页",
+    "poweredBy": "由 AI 前沿计算器提供"
+  },
+  "nav": {
+    "home": "首页",
+    "allTools": "计算器",
+    "categories": {
+      "calculator": "计算器",
+      "ai-cost": "AI 成本",
+      "programming": "编程开发",
+      "math": "数学计算",
+      "finance": "金融财务",
+      "health": "健康生活",
+      "text": "文本工具"
+    }
+  },
+  "home": {
+    "badge": "{{count}} 个在线工具，全部免费使用",
+    "title": "AI 前沿计算器",
+    "description": "AI 前沿计算器提供 {{count}}+ 免费在线计算工具，覆盖 AI 成本、编程开发、数学计算、金融财务、健康生活、文本工具等类别。公式透明，计算准确。",
+    "browseAll": "浏览所有工具",
+    "browseByCategory": "按分类查找",
+    "categoryTitle": "工具分类",
+    "toolsCount": "{{count}} 个工具",
+    "featuredTitle": "热门工具",
+    "whyTitle": "为什么选择 AI 前沿计算器？",
+    "whyItems": {
+      "transparent": {
+        "title": "公式透明",
+        "desc": "每个工具都展示计算公式，结果可验证，不隐藏逻辑。"
+      },
+      "noRegister": {
+        "title": "无需注册",
+        "desc": "所有工具开箱即用，无需登录、无需安装，浏览器直接打开。"
+      },
+      "updated": {
+        "title": "持续更新",
+        "desc": "AI 工具价格实时追踪，费用计算器定期校准最新 API 报价。"
+      }
+    },
+    "footerNote": "本站提供免费计算器工具，所有计算基于公开公式。如需专业财务或医疗建议，请咨询专业人士。"
+  },
+  "toolsPage": {
+    "title": "计算器工具",
+    "subtitle": "AI 前沿计算器，提供 30+ 实用计算工具，覆盖 AI 成本、编程、数学、金融、健康等领域。",
+    "categoryTitle": "按分类浏览",
+    "featuredTitle": "热门推荐"
+  },
+  "calculator": {
+    "useTool": "使用计算器",
+    "formula": "公式",
+    "examples": "示例",
+    "label": "标签",
+    "result": "结果",
+    "calculating": "计算中...",
+    "calculate": "计算",
+    "relatedTitle": "相关计算器",
+    "disclaimer": "本计算器基于公开公式计算，实际结果可能因具体情况而有所不同。如有专业需求，请咨询专业人士。",
+    "inputs": {
+      "number": "请输入数值",
+      "select": "请选择",
+      "toggleOn": "已开启",
+      "toggleOff": "已关闭"
+    }
+  },
+  "footer": {
+    "siteDesc": "提供 30+ 专业计算器工具，覆盖 AI 成本、编程开发、数学计算、金融财务、健康生活等领域。",
+    "categoriesTitle": "工具分类",
+    "aboutTitle": "关于",
+    "disclaimer": "本站提供免费在线计算器工具，计算结果仅供参考，不构成专业建议。",
+    "copyright": "版权所有"
+  },
+  "pages": {
+    "about": "关于我们",
+    "author": "关于作者",
+    "contact": "联系我们",
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "back": "返回"
+  },
+  "langName": {
+    "zh": "简体中文",
+    "en": "English",
+    "ja": "日本語",
+    "ko": "한국어",
+    "zh-TW": "繁體中文"
+  }
+}
