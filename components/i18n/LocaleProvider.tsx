@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, useEffect, ReactNode } from 'react';
 import { LOCALES, Locale, getLangAttr } from '@/lib/i18n/detect';
 import { tStr } from '@/lib/i18n/messages';
 
@@ -36,8 +36,8 @@ function loadMessages(locale: Locale): Record<string, unknown> {
 export function I18nProvider({ locale, children }: { locale: Locale; children: ReactNode }) {
   const [currentLocale, setCurrentLocale] = useState<Locale>(locale);
 
-  // Initialize all bundles on first render
-  useState(() => {
+  // Preload all message bundles on mount
+  useEffect(() => {
     for (const loc of LOCALES) {
       try {
         const mod = require(`@/messages/${loc}.json`) as { default: Record<string, unknown> };
@@ -46,7 +46,7 @@ export function I18nProvider({ locale, children }: { locale: Locale; children: R
         // skip unavailable locale
       }
     }
-  });
+  }, []);
 
   const setLocale = useCallback((newLocale: Locale) => {
     setCurrentLocale(newLocale);
