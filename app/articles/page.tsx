@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: article.title,
     description: article.description,
-    alternates: { canonical: `/${article.slug}` },
+    alternates: { canonical: `/articles/${article.slug}` },
     openGraph: {
       type: 'article',
       title: article.title,
@@ -53,7 +53,7 @@ export default async function ArticlePage({ params }: Props) {
   const breadcrumbSchema = buildBreadcrumbSchema([
     { name: '首页', url: SITE_CONFIG.url },
     { name: categoryName, url: `${SITE_CONFIG.url}/category/${article.category}` },
-    { name: article.title, url: `${SITE_CONFIG.url}/${article.slug}` },
+    { name: article.title, url: `${SITE_CONFIG.url}/articles/${article.slug}` },
   ]);
 
   return (

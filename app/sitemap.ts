@@ -1,18 +1,20 @@
 import { MetadataRoute } from 'next';
 import { SITE_CONFIG, CATEGORIES } from '@/data/site';
-import { getAllCalculatorSlugs, getCalculatorsByCategory } from '@/data/calculators/registry';
+import { getAllCalculatorSlugs } from '@/data/calculators/registry';
+import { getAllArticles, getAllSlugs } from '@/lib/articles';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const slugList = getAllCalculatorSlugs();
   const baseUrl = SITE_CONFIG.url;
 
-  const calculatorPages = slugList.map((slug) => ({
+  // Calculator tool pages
+  const calculatorPages = getAllCalculatorSlugs().map((slug) => ({
     url: `${baseUrl}/tools/${slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.9,
   }));
 
+  // Calculator category pages
   const categoryPages = CATEGORIES.filter((c) => c.slug !== 'calculator').map((cat) => ({
     url: `${baseUrl}/tools/category/${cat.slug}`,
     lastModified: new Date(),
@@ -20,6 +22,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // Article pages (now at /articles/[slug])
+  const articleSlugs = getAllSlugs();
+  const articlePages = articleSlugs.map((slug) => ({
+    url: `${baseUrl}/articles/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+  }));
+
+  // Static pages
   const staticPages = [
     {
       url: baseUrl,
@@ -59,5 +71,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [...staticPages, ...categoryPages, ...calculatorPages];
+  return [...staticPages, ...categoryPages, ...calculatorPages, ...articlePages];
 }

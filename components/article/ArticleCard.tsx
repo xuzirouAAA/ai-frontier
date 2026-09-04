@@ -15,12 +15,12 @@ export default function ArticleCard({ article, variant = 'default' }: ArticleCar
   if (variant === 'hero') {
     return (
       <Link
-        href={`/${article.slug}`}
+        href={`/articles/${article.slug}`}
         className="group relative flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white transition-shadow hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-900"
       >
         <div className="flex flex-1 flex-col justify-between p-6 sm:p-8">
           <div>
-            <Badge href={`/category/${article.category}`}>{category?.name || article.category}</Badge>
+            <Badge href={`/tools/category/${article.category}`}>{category?.name || article.category}</Badge>
             <h2 className="mt-3 text-2xl font-bold leading-tight text-zinc-900 transition-colors group-hover:text-blue-600 sm:text-3xl dark:text-white dark:group-hover:text-blue-400">
               {article.title}
             </h2>
@@ -40,7 +40,7 @@ export default function ArticleCard({ article, variant = 'default' }: ArticleCar
 
   return (
     <Link
-      href={`/${article.slug}`}
+      href={`/articles/${article.slug}`}
       className="group flex flex-col rounded-xl border border-zinc-200 bg-white p-5 transition-all hover:-translate-y-0.5 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900"
     >
       <div className="mb-3 flex items-center gap-2">
