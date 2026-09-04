@@ -7,18 +7,18 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-3">
           <div>
-            <h3 className="mb-3 text-sm font-semibold text-zinc-900 dark:text-white">AI 前沿资讯</h3>
+            <h3 className="mb-3 text-sm font-semibold text-zinc-900 dark:text-white">AI 前沿计算器</h3>
             <p className="text-sm leading-relaxed text-zinc-500">
-              专注AI与科技前沿的中文资讯站，为你精选最新AI工具、技术突破与行业动态。
+              提供 30+ 专业计算器工具，覆盖 AI 成本、编程开发、数学计算、金融财务、健康生活等领域。
             </p>
           </div>
           <div>
-            <h3 className="mb-3 text-sm font-semibold text-zinc-900 dark:text-white">分类</h3>
+            <h3 className="mb-3 text-sm font-semibold text-zinc-900 dark:text-white">工具分类</h3>
             <ul className="space-y-2">
-              {CATEGORIES.map((cat) => (
+              {CATEGORIES.filter((c) => c.slug !== 'calculator').map((cat) => (
                 <li key={cat.slug}>
                   <Link
-                    href={`/category/${cat.slug}`}
+                    href={`/tools/category/${cat.slug}`}
                     className="text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:hover:text-white"
                   >
                     {cat.name}
@@ -74,8 +74,8 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t border-zinc-200 pt-6 text-center text-xs text-zinc-400 dark:border-zinc-800">
-          <p>本站内容由 徐梓柔 编辑整理，力求准确及时，如有遗漏欢迎指正。</p>
-          <p className="mt-2">&copy; {new Date().getFullYear()} AI 前沿资讯. All rights reserved.</p>
+          <p>本站提供免费在线计算器工具，计算结果仅供参考，不构成专业建议。</p>
+          <p className="mt-2">&copy; {new Date().getFullYear()} AI 前沿计算器. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -1,61 +1,63 @@
 import { MetadataRoute } from 'next';
-import { getPublishedArticles } from '@/lib/articles';
 import { SITE_CONFIG, CATEGORIES } from '@/data/site';
+import { getAllCalculatorSlugs, getCalculatorsByCategory } from '@/data/calculators/registry';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const articles = getPublishedArticles();
+  const slugList = getAllCalculatorSlugs();
+  const baseUrl = SITE_CONFIG.url;
+
+  const calculatorPages = slugList.map((slug) => ({
+    url: `${baseUrl}/tools/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.9,
+  }));
+
+  const categoryPages = CATEGORIES.filter((c) => c.slug !== 'calculator').map((cat) => ({
+    url: `${baseUrl}/tools/category/${cat.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
 
   const staticPages = [
     {
-      url: SITE_CONFIG.url,
+      url: baseUrl,
       lastModified: new Date(),
       changeFrequency: 'daily' as const,
       priority: 1,
     },
     {
-      url: `${SITE_CONFIG.url}/about`,
+      url: `${baseUrl}/about`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.3,
     },
     {
-      url: `${SITE_CONFIG.url}/author`,
+      url: `${baseUrl}/author`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.3,
     },
     {
-      url: `${SITE_CONFIG.url}/contact`,
+      url: `${baseUrl}/contact`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.3,
     },
     {
-      url: `${SITE_CONFIG.url}/privacy`,
+      url: `${baseUrl}/privacy`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.3,
     },
     {
-      url: `${SITE_CONFIG.url}/terms`,
+      url: `${baseUrl}/terms`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.3,
     },
-    ...CATEGORIES.map((cat) => ({
-      url: `${SITE_CONFIG.url}/category/${cat.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    })),
   ];
 
-  const articlePages = articles.map((article) => ({
-    url: `${SITE_CONFIG.url}/${article.slug}`,
-    lastModified: new Date(article.updatedAt || article.publishedAt),
-    changeFrequency: 'weekly' as const,
-    priority: 0.9,
-  }));
-
-  return [...staticPages, ...articlePages];
+  return [...staticPages, ...categoryPages, ...calculatorPages];
 }
