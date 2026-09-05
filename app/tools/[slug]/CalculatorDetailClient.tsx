@@ -100,7 +100,7 @@ export default function CalculatorDetailClient({ calculator }: Props) {
       {/* SEO Description */}
       <div className="mt-12 rounded-xl bg-zinc-50 p-6 dark:bg-zinc-900">
         <h2 className="mb-3 text-lg font-semibold text-zinc-900 dark:text-white">
-          {t('pages.about', '关于')}{calculator.title}
+          {t('pages.about')}{calculator.title}
         </h2>
         <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
           {calculator.description}
