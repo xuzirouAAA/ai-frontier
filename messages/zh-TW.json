@@ -61,6 +61,7 @@
     "calculating": "計算中...",
     "calculate": "計算",
     "relatedTitle": "相關計算器",
+    "faqTitle": "常見問題",
     "disclaimer": "本計算器基於公開公式計算，實際結果可能因具體情況而有所不同。如有專業需求，請諮詢專業人士。",
     "inputs": {
       "number": "請輸入數值",

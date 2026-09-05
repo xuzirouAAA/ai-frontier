@@ -66,7 +66,7 @@ export default function CalculatorDetailClient({ calculator }: Props) {
       {/* FAQ */}
       {calculator.faq && calculator.faq.length > 0 && (
         <div className="mt-8 rounded-xl bg-zinc-50 p-6 dark:bg-zinc-900">
-          <h2 className="mb-4 text-xl font-semibold text-zinc-900 dark:text-white">{t('pages.privacy', '常见问题')}</h2>
+          <h2 className="mb-4 text-xl font-semibold text-zinc-900 dark:text-white">{t('calculator.faqTitle')}</h2>
           <div className="space-y-4">
             {calculator.faq.map((item, i) => (
               <div key={i} className="border-b border-zinc-200 pb-4 last:border-0 dark:border-zinc-700">
