@@ -47,7 +47,7 @@ export default function CalculatorShell({ calculator }: CalculatorShellProps) {
   return (
     <div className="rounded-xl border border-zinc-200 p-6 dark:border-zinc-700">
       <div className="mb-6">
-        <h3 className="mb-4 text-lg font-semibold text-zinc-900 dark:text-white">{t('calculator.inputParams', '输入参数')}</h3>
+        <h3 className="mb-4 text-lg font-semibold text-zinc-900 dark:text-white">{t('calculator.inputParams')}</h3>
         <div className="space-y-4">
           {calculator.inputs.map((input) => (
             <div key={input.label}>
