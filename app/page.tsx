@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import CalculatorCard from '@/components/calculator/CalculatorCard';
 import Container from '@/components/ui/Container';
@@ -8,11 +10,6 @@ import { useI18n } from '@/components/i18n/LocaleProvider';
 import { SITE_CONFIG } from '@/data/site';
 
 const TOOLS_PER_PAGE = 12;
-
-export const metadata = {
-  title: 'AI Frontier Calculators - 30+ Free Online Tools',
-  description: 'Free online calculator tools covering AI cost estimation, programming, math, finance, health, and text utilities.',
-};
 
 export default function HomePage() {
   const { t } = useI18n();

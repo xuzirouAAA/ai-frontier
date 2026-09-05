@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import CalculatorCard from '@/components/calculator/CalculatorCard';
 import Container from '@/components/ui/Container';
