@@ -23,7 +23,7 @@
   "home": {
     "badge": "{{count}} free online tools",
     "title": "AI Frontier Calculators",
-    "description": "AI Frontier Calculators provides 30+ free online calculation tools covering AI cost estimation, programming utilities, math, finance, health, and text tools. Transparent formulas, accurate results.",
+    "description": "AI Frontier calculators offer 35+ free online tools for AI cost estimation, programming utilities, math, finance, compliance, and health.",
     "browseAll": "Browse All Tools",
     "browseByCategory": "Browse by Category",
     "categoryTitle": "Categories",
@@ -72,7 +72,7 @@
     }
   },
   "footer": {
-    "siteDesc": "30+ professional calculator tools covering AI cost estimation, programming, math, finance, and health.",
+    "siteDesc": "35+ free online calculators covering AI cost, programming, math, finance, compliance, and health tools.",
     "categoriesTitle": "Categories",
     "aboutTitle": "About",
     "disclaimer": "Free online calculator tools. Results are for reference only and do not constitute professional advice.",

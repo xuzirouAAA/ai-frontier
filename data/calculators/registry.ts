@@ -1,5 +1,5 @@
 /**
- * 计算器注册表 - 30 个首批工具
+ * 计算器注册表 - 35 个工具
  *
  * 每个计算器包含：slug、分类、标题、描述、公式、输入项、示例、FAQ、相关工具
  * 模板中所有数字占位符为占位/示例值，业务上线前请由人工校准。
@@ -9,9 +9,9 @@ import type { Calculator, CalculatorCategory } from '@/types/calculator';
 
 export const CALCULATOR_CATEGORIES: CalculatorCategory[] = [
   { slug: 'ai-cost', name: 'AI 成本', description: 'AI 模型 API、图片、视频、GPU 成本估算', icon: 'cpu' },
-  { slug: 'programming', name: '编程开发', description: 'JSON、Base64、正则、URL 等开发工具', icon: 'code' },
+  { slug: 'programming', name: '编程开发', description: 'JSON、Base64、正则、URL、网络安全合规检测等开发工具', icon: 'code' },
   { slug: 'math', name: '数学计算', description: '百分比、单位转换、BMI 等日常计算', icon: 'sigma' },
-  { slug: 'finance', name: '金融财务', description: '贷款、汇率、工资、投资回报计算', icon: 'dollar' },
+  { slug: 'finance', name: '金融财务', description: '贷款、汇率、工资、投资回报、企业税、遣散补偿、商业房贷计算', icon: 'dollar' },
   { slug: 'health', name: '健康生活', description: '卡路里、营养、孕产、年龄计算', icon: 'heart' },
   { slug: 'text', name: '文本工具', description: '字数、阅读时间、大小写转换', icon: 'type' },
 ];
@@ -348,7 +348,7 @@ export const CALCULATORS: Calculator[] = [
   },
 
   // ============================================================
-  // 分类 4: 金融财务 (5)
+  // 分类 4: 金融财务 (10)
   // ============================================================
   {
     slug: 'loan-calculator',
@@ -457,6 +457,121 @@ export const CALCULATORS: Calculator[] = [
       { question: 'ROI 和 IRR 有什么区别？', answer: 'ROI 是总回报率，IRR 是考虑资金时间价值的内部收益率，多次投入时建议用 IRR。' },
     ],
     relatedCalculators: ['compound-interest', 'loan-calculator'],
+  },
+  {
+    slug: 'corp-tax-cross-border',
+    category: 'finance',
+    title: '企业税率与跨境合规计算器',
+    description: '计算企业所得税、增值税及跨境交易合规成本，支持 CFC 规则、转让定价和常设机构判定。',
+    formula: '企业税 = 应纳税所得额 × 适用税率；跨境合规成本 = 关税 + 增值税 + 合规服务费',
+    inputs: [
+      { label: '应纳税所得额', type: 'number', value: 1000000 },
+      { label: '企业税率 (%)', type: 'number', value: 25 },
+      { label: '增值税率 (%)', type: 'number', value: 13 },
+      { label: '跨境交易额', type: 'number', value: 500000 },
+      { label: '是否有常设机构', type: 'toggle' },
+    ],
+    result: '综合税负',
+    examples: [
+      { label: '国内企业', inputs: { income: 1000000, rate: 25, vat: 13, crossBorder: 0, pe: false }, output: '企业所得税 ¥250,000' },
+      { label: '跨境有常设机构', inputs: { income: 1000000, rate: 25, vat: 13, crossBorder: 500000, pe: true }, output: '综合税负约 ¥515,000' },
+    ],
+    faq: [
+      { question: '什么是常设机构？', answer: '常设机构指企业在境外有固定营业场所或代理人代为签订合同，可能触发境外纳税义务。' },
+      { question: 'CFC 规则是什么？', answer: '受控外国公司规则要求中国居民企业控制的低税率地区子公司利润需在中国补税。' },
+    ],
+    relatedCalculators: ['salary-calculator', 'mortgage-calculator', 'corp-tax-domestic'],
+  },
+  {
+    slug: 'corp-tax-domestic',
+    category: 'finance',
+    title: '国内企业综合税负计算器',
+    description: '计算企业所得税、增值税、附加税及印花税等国内经营综合税负，适用于一般纳税人和小规模纳税人。',
+    formula: '综合税负 = 企业所得税 + 增值税 + 城建税 + 教育费附加 + 印花税',
+    inputs: [
+      { label: '年营业收入', type: 'number', value: 5000000 },
+      { label: '年成本费用', type: 'number', value: 3500000 },
+      { label: '纳税人类型', type: 'select', options: ['一般纳税人', '小规模纳税人'] },
+      { label: '行业', type: 'select', options: ['制造业', '服务业', '零售业', '科技业'] },
+    ],
+    result: '年度综合税负',
+    examples: [
+      { label: '制造业一般纳税人', inputs: { revenue: 5000000, cost: 3500000, type: '一般纳税人', industry: '制造业' }, output: '综合税负约 ¥420,000' },
+      { label: '小规模纳税人', inputs: { revenue: 5000000, cost: 3500000, type: '小规模纳税人', industry: '服务业' }, output: '综合税负约 ¥120,000' },
+    ],
+    faq: [
+      { question: '小规模纳税人有哪些优惠？', answer: '2027 年前，小规模纳税人月销售额 10 万元以下免征增值税，且企业所得税可享受减半征收优惠。' },
+    ],
+    relatedCalculators: ['corp-tax-cross-border', 'salary-calculator'],
+  },
+  {
+    slug: 'cybersecurity-compliance',
+    category: 'programming',
+    title: '网络安全与合规检测工具',
+    description: '检测网站安全性并评估合规状态，支持等保 2.0、GDPR、ISO 27001 等多标准检测，输出安全评分和改进建议。',
+    formula: '安全评分 = 各检查项加权求和；合规得分 = 通过项 / 总项 × 100',
+    inputs: [
+      { label: '网站 URL', type: 'text', value: 'https://example.com' },
+      { label: '是否使用 HTTPS', type: 'toggle' },
+      { label: '是否有安全头部的', type: 'toggle' },
+      { label: '目标合规标准', type: 'select', options: ['等保 2.0', 'GDPR', 'ISO 27001', 'PCI DSS'] },
+    ],
+    result: '安全评分',
+    examples: [
+      { label: '基础检测', inputs: { url: 'https://example.com', https: true, headers: true, standard: '等保 2.0' }, output: '安全评分 85/100（良好）' },
+      { label: '无 HTTPS', inputs: { url: 'http://example.com', https: false, headers: true, standard: 'GDPR' }, output: '安全评分 42/100（需改进）' },
+    ],
+    faq: [
+      { question: '等保 2.0 是什么？', answer: '网络安全等级保护 2.0 是中国强制性安全标准，要求网站按级别实施安全技术措施和管理要求。' },
+      { question: 'GDPR 需要 Compliance 吗？', answer: '如果网站面向欧盟用户收集数据，必须遵守 GDPR，否则最高罚款 2000 万欧元或全球营收 4%。' },
+    ],
+    relatedCalculators: ['url-encoder', 'json-formatter'],
+  },
+  {
+    slug: 'severance-calculator',
+    category: 'finance',
+    title: '遣散费与解雇补偿计算器',
+    description: '根据工作年限、月薪和法律标准计算 N/N+1/2N 经济补偿金，支持协商解除和违法解除场景。',
+    formula: 'N 补偿 = 工作年限 × 月平均工资；2N 赔偿 = N 补偿 × 2（违法解除）',
+    inputs: [
+      { label: '工作年限', type: 'number', value: 5 },
+      { label: '月平均工资', type: 'number', value: 15000 },
+      { label: '补偿类型', type: 'select', options: ['协商解除 N', '协商解除 N+1', '违法解除 2N'] },
+      { label: '当地社平工资', type: 'number', value: 12000 },
+    ],
+    result: '补偿金额',
+    examples: [
+      { label: '5 年 N+1', inputs: { years: 5, salary: 15000, type: '协商解除 N+1', avg: 12000 }, output: '¥90,000' },
+      { label: '3 年 2N', inputs: { years: 3, salary: 20000, type: '违法解除 2N', avg: 15000 }, output: '¥120,000' },
+    ],
+    faq: [
+      { question: 'N 的计算方式是什么？', answer: '每满一年支付一个月工资；六个月以上不满一年按一年算；不满六个月支付半个月工资。' },
+      { question: '高薪员工有限制吗？', answer: '月工资高于社平工资 3 倍的，补偿上限为社平工资 3 倍 × 年限，最多 12 年。' },
+    ],
+    relatedCalculators: ['salary-calculator', 'loan-calculator'],
+  },
+  {
+    slug: 'commercial-property',
+    category: 'finance',
+    title: '商业地产估值与贷款评估计算器',
+    description: '估算商业地产价值、出租回报率、LTV 贷款成数，以及商业贷款月供和总利息。',
+    formula: '商业价值 = 年净租金 / 资本化率；LTV = 贷款金额 / 评估价值；月供公式同等额本息',
+    inputs: [
+      { label: '年租金收入', type: 'number', value: 360000 },
+      { label: '年运营支出', type: 'number', value: 72000 },
+      { label: '资本化率 (%)', type: 'number', value: 6 },
+      { label: '贷款利率 (%)', type: 'number', value: 5.5 },
+      { label: '贷款年限', type: 'number', value: 20 },
+    ],
+    result: '估算价值 / 月供',
+    examples: [
+      { label: '商铺投资', inputs: { rent: 360000, expense: 72000, capRate: 6, rate: 5.5, years: 20 }, output: '价值 ¥5,000,000，月供 ¥34,000' },
+    ],
+    faq: [
+      { question: '资本化率怎么确定？', answer: '资本化率 = 年净收益 / 物业价值，一线城市商业通常在 4-6%，二三线城市 6-10%。' },
+      { question: '商业贷款首付多少？', answer: '商业地产贷款首付通常不低于 50%，LTV 最高 50%，且利率比住宅高 1-2 个百分点。' },
+    ],
+    relatedCalculators: ['mortgage-calculator', 'roi-calculator', 'compound-interest'],
   },
 
   // ============================================================
